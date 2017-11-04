@@ -1,0 +1,46 @@
+#app-body {
+	background: #4fbbe0;
+	width: 100%;
+	padding-top: 100px;
+	padding-bottom: 100px;
+	text-align: center;
+}
+
+#app-header {
+	background: #232323;
+	color: #ffffff;
+	width: 100%;
+	height: 100px;
+}
+
+#app-footer {
+	background: #232323;
+	color: #ffffff;
+	width: 100%;
+	height: 100px;
+	text-align: center;
+}
+
+#footer {
+	text-align: center;
+	width: 100%;
+	height: 100%;
+	vertical-align:middle;
+}
+
+#header{
+	float: left;
+	text-align: center;
+	margin: 5px;
+	font-size: 25px;
+}
+
+#languages{
+	float: left;
+	margin: 5px;
+	width: 100px;
+}
+
+#login{
+	display: inline-block;
+}
