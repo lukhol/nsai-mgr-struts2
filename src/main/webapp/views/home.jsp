@@ -7,4 +7,5 @@
 		<s:textfield key="user.email"/>
 		<s:submit key="submit"/>
 	</s:form>
+	<p><a href="<s:url action='showUsersList'/>">List of users</a></p>
 </div>
