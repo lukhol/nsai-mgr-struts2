@@ -19,10 +19,8 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	
-	private String login;
+	private String username;
 	private String password;
-	
-	private String name;
 	
 	@Column(unique=true)
 	private String email;
@@ -33,18 +31,15 @@ public class User {
 	public long getId() {
 		return id;
 	}
+	
 	public void setId(long id) {
 		this.id = id;
 	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
+	
 	public String getEmail() {
 		return email;
 	}
+	
 	public void setEmail(String email) {
 		this.email = email;
 	}
@@ -52,19 +47,23 @@ public class User {
 	public String getPassword() {
 		return password;
 	}
+	
 	public void setPassword(String password) {
 		this.password = password;
 	}
 		
 	public String getLogin() {
-		return login;
+		return username;
 	}
+	
 	public void setLogin(String login) {
-		this.login = login;
+		this.username = login;
 	}
+	
 	public Set<UserRole> getUserRole() {
 		return userRole;
 	}
+	
 	public void setUserRole(Set<UserRole> userRole) {
 		this.userRole = userRole;
 	}
@@ -72,6 +71,6 @@ public class User {
 	@Override
 	@Transient
 	public String toString() {
-		return "User [id=" + id + ", name=" + name + ", email=" + email + "]";
+		return "User [id=" + id + "," + ", email=" + email + "]";
 	}
 }

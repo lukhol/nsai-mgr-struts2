@@ -2,5 +2,10 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 
 <div>
-	Register.
+	<s:form action="registerExecute">
+	    <s:textfield key="user.username"/>
+	    <s:password key="user.password"/>
+	    <input type="hidden"  name="${_csrf.parameterName}" value="${_csrf.token}"/>
+	    <s:submit key="submit"/>
+	</s:form>
 </div>
