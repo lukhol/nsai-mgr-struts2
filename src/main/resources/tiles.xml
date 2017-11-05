@@ -11,7 +11,7 @@
 	</definition>
 	
 	<definition name="firstView" extends="baseLayout">
-		<put-attribute name="body" value="/views/home.jsp"/>
+		<put-attribute name="body" value="/views/login.jsp"/>
 	</definition>
 	
 	<definition name="successView" extends="baseLayout">
@@ -21,4 +21,13 @@
 	<definition name="usersListView" extends="baseLayout">
 		<put-attribute name="body" value="/views/usersList.jsp"/>
 	</definition>
+	
+	<definition name="homeView" extends="baseLayout">
+		<put-attribute name="body" value="/views/home.jsp"/>
+	</definition>
+	
+	<definition name="registerView" extends="baseLayout">
+		<put-attribute name="body" value="/views/register.jsp"/>
+	</definition>
+	
 </tiles-definitions>

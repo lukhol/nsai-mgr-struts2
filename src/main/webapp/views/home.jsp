@@ -1,11 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 
-<div id="login">
-	<s:form action="Login">
-		<s:textfield key="user.name"/>
-		<s:textfield key="user.email"/>
-		<s:submit key="submit"/>
-	</s:form>
-	<p><a href="<s:url action='showUsersList'/>">List of users</a></p>
+<div>
+	Home page!
+	
+	<s:url action="login" var="loginTag"/>
+	<s:url action="login?logout" var="logoutTag" />
+	<s:url action="register" var="registerTag" />
+	</br>
+	<a href="<s:property value="#loginTag" />" >Sign in</a>
+	</br>
+	<a href="<s:property value="#logoutTag" />" >Logout</a>
+	</br>
+	<a href="<s:property value="#registerTag" />" >Register</a>
+	
 </div>
