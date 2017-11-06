@@ -10,24 +10,24 @@
 		<put-attribute name="footer" value="/views/layout/footer.jsp"/>
 	</definition>
 	
-	<definition name="firstView" extends="baseLayout">
+	<definition name="LoginDef" extends="baseLayout">
 		<put-attribute name="body" value="/views/login.jsp"/>
 	</definition>
 	
-	<definition name="successView" extends="baseLayout">
-		<put-attribute name="body" value="/views/success.jsp"/>
+	<definition name="WelcomeDef" extends="baseLayout">
+		<put-attribute name="body" value="/views/welcome.jsp"/>
 	</definition>
 	
-	<definition name="usersListView" extends="baseLayout">
-		<put-attribute name="body" value="/views/usersList.jsp"/>
+	<definition name="StudentNotesListDef" extends="baseLayout">
+		<put-attribute name="body" value="/views/studentNotesList.jsp"/>
 	</definition>
 	
-	<definition name="homeView" extends="baseLayout">
+	<definition name="HomeDef" extends="baseLayout">
 		<put-attribute name="body" value="/views/home.jsp"/>
 	</definition>
 	
-	<definition name="registerView" extends="baseLayout">
-		<put-attribute name="body" value="/views/register.jsp"/>
+	<definition name="RegistrationDef" extends="baseLayout">
+		<put-attribute name="body" value="/views/registration.jsp"/>
 	</definition>
 	
 </tiles-definitions>

@@ -1,38 +1,35 @@
 package com.politechnika.models;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.Transient;
 
 @Entity
 public class User {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long id;
+	private Long id;
 	
+	@Column(nullable=false)
 	private String username;
+	
+	@Column(nullable=false)
 	private String password;
 	
-	@Column(unique=true)
+	@Column(unique=true, nullable=false)
 	private String email;
 	
-	@ManyToMany(fetch = FetchType.EAGER)
-	private Set<UserRole> userRole = new HashSet<UserRole>(0);
+	@Column(nullable=false)
+	private UserRole userRole;
 	
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 	
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	
@@ -52,11 +49,11 @@ public class User {
 		this.password = password;
 	}
 	
-	public Set<UserRole> getUserRole() {
+	public UserRole getUserRole() {
 		return userRole;
 	}
 	
-	public void setUserRole(Set<UserRole> userRole) {
+	public void setUserRole(UserRole userRole) {
 		this.userRole = userRole;
 	}
 	

@@ -9,9 +9,9 @@
 	<s:url action="login" var="loginTag"/>
 	<s:url action="register" var="registerTag" />
 	
-	</br>
+	<br>
 	<a href="<s:property value="#loginTag" />" >Sign in</a>
-	</br>
+	<br>
 	<a href="<s:property value="#registerTag" />" >Register</a>
 
 </div>
