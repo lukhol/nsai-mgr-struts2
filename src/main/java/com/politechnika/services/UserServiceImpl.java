@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.politechnika.dao.UserDAO;
 import com.politechnika.models.User;
+import com.politechnika.models.UserRole;
 
 @Service
 public class UserServiceImpl implements UserService{
@@ -18,6 +19,8 @@ public class UserServiceImpl implements UserService{
 	@Override
 	@Transactional
 	public void addUser(User user) {
+		UserRole userRole = userDAO.findRoleByName("ROLE_USER");
+		user.getUserRole().add(userRole);
 		userDAO.addUser(user);
 	}
 
@@ -25,6 +28,42 @@ public class UserServiceImpl implements UserService{
 	@Transactional
 	public List<User> getAllUsers() {
 		return userDAO.getAllUsers();
+	}
+
+	@Override
+	@Transactional
+	public void addRole(UserRole userRole) {
+		userDAO.addRole(userRole);	
+	}
+
+	@Override
+	@Transactional
+	public List<UserRole> listUserRole() {
+		return userDAO.listUserRole();
+	}
+
+	@Override
+	@Transactional
+	public void removeUserRole(int id) {
+		userDAO.removeUserRole(id);
+	}
+
+	@Override
+	@Transactional
+	public UserRole getUserRole(int id) {
+		return userDAO.getUserRole(id);
+	}
+
+	@Override
+	@Transactional
+	public UserRole findRoleByName(String role) {
+		return userDAO.findRoleByName(role);
+	}
+
+	@Override
+	@Transactional
+	public User findByLogin(String login) {
+		return userDAO.findByLogin(login);
 	}
 
 }

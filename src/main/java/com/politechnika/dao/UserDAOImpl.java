@@ -29,7 +29,7 @@ public class UserDAOImpl implements UserDAO{
 	public User findByLogin(String login) {
 		List<User> users = new ArrayList<User>();
 
-		users = sessionFactory.getCurrentSession().createQuery("from User where login=?").setParameter(0, login).list();
+		users = sessionFactory.getCurrentSession().createQuery("from User where username=?").setParameter(0, login).list();
 
 		if (users.size() > 0) {
 			return users.get(0);

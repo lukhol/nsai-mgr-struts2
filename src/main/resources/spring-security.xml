@@ -8,7 +8,7 @@
          http://www.springframework.org/schema/security/spring-security.xsd">
   
     <http auto-config="true" use-expressions="true">
-        <intercept-url pattern="/showUsersList*" access="hasRole('ROLE_ADMIN')" />
+        <intercept-url pattern="/showUsersList*" access="hasAnyRole('ROLE_ADMIN', 'ROLE_USER')" />
         <intercept-url pattern="/register*" access="permitAll"/>
         <access-denied-handler error-page="/views/accessDenied.jsp" />
         <form-login

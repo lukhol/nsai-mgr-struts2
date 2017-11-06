@@ -21,18 +21,18 @@ import com.politechnika.models.UserRole;
 public class MyUserDetailsService implements UserDetailsService {
 
 	@Autowired
-	UserDAO userDAO;
+	UserService userService;
 	
 	@Override
 	public UserDetails loadUserByUsername(String arg0) throws UsernameNotFoundException {
 		System.out.println("UserDetailsService");
-		User user = userDAO.findByLogin(arg0);
+		User user = userService.findByLogin(arg0);
 		List<GrantedAuthority> authorities = buildUserAuthority(user.getUserRole());
 		return buildUserForAuthentication(user, authorities);
 	}
 	
 	private org.springframework.security.core.userdetails.User buildUserForAuthentication(User user, List<GrantedAuthority> authorities) {
-		return new org.springframework.security.core.userdetails.User(user.getLogin(), user.getPassword(), 
+		return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), 
 			true, true, true, true, authorities);
 	}
 	
@@ -44,13 +44,5 @@ public class MyUserDetailsService implements UserDetailsService {
 		}
 		List<GrantedAuthority> result = new ArrayList<GrantedAuthority>(setAuths);
 		return result;
-	}
-
-	public UserDAO getUserDAO() {
-		return userDAO;
-	}
-	
-	public void setUserDAO(UserDAO userDAO) {
-		this.userDAO = userDAO;
 	}
 }

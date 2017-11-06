@@ -51,14 +51,6 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-		
-	public String getLogin() {
-		return username;
-	}
-	
-	public void setLogin(String login) {
-		this.username = login;
-	}
 	
 	public Set<UserRole> getUserRole() {
 		return userRole;
@@ -68,9 +60,11 @@ public class User {
 		this.userRole = userRole;
 	}
 	
-	@Override
-	@Transient
-	public String toString() {
-		return "User [id=" + id + "," + ", email=" + email + "]";
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
 	}
 }
