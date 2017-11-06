@@ -2,11 +2,15 @@ package com.politechnika.models;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Version;
 
 @Entity
+@Table(name="USERS")
 public class User {
 
 	@Id
@@ -22,8 +26,12 @@ public class User {
 	@Column(unique=true, nullable=false)
 	private String email;
 	
+	@Enumerated
 	@Column(nullable=false)
 	private UserRole userRole;
+	
+	@Version
+	private int optimisticLock;
 	
 	public Long getId() {
 		return id;
