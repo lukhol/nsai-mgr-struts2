@@ -27,6 +27,7 @@
             </user-service>
         </authentication-provider> 
         <authentication-provider user-service-ref="myUserDetailsService">
+        	<password-encoder hash="bcrypt"/>
 	    </authentication-provider>
     </authentication-manager>
 </beans:beans>

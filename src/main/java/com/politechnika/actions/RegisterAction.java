@@ -24,7 +24,7 @@ public class RegisterAction extends ActionSupport {
 	UserService userService;
 	
 	private User user;
-	
+
 	@Action("register")
 	public String registerInput() throws Exception {
 		return INPUT;
