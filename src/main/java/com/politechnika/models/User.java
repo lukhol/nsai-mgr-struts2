@@ -22,8 +22,19 @@ public class User {
 	private String lastname;
 	
 	@Column(nullable=false)
+	private boolean activated;
+	
+	@Column(nullable=false)
 	private String username;
 	
+	public boolean isActivated() {
+		return activated;
+	}
+
+	public void setActivated(boolean activated) {
+		this.activated = activated;
+	}
+
 	@Column(nullable=false)
 	private String password;
 	

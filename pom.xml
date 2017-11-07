@@ -151,6 +151,12 @@
 			<version>3.4</version>
 		</dependency>
 
+		<!-- Java mail -->
+		<dependency>
+			<groupId>javax.mail</groupId>
+			<artifactId>mail</artifactId>
+			<version>1.4</version>
+		</dependency>
 
 		<!-- Log4j -->
 		<dependency>

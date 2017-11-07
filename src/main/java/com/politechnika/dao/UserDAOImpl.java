@@ -7,6 +7,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.politechnika.models.Activator;
 import com.politechnika.models.User;
 import com.politechnika.models.UserRole;
 
@@ -43,5 +44,41 @@ public class UserDAOImpl implements UserDAO{
 		users = sessionFactory.getCurrentSession().createQuery("from User where userRole=?").setParameter(0, role.ordinal()).list();
 
 		return users;
+	}
+
+	@Override
+	@SuppressWarnings("unchecked")
+	public Activator getActivatorByUser(User user) {
+		List<Activator> activators = sessionFactory.getCurrentSession().createQuery("from Activator where user=?").setParameter(0, user).list();
+		
+		if(activators.isEmpty())
+			return null;
+		
+		return activators.get(0);
+	}
+
+	@Override
+	public void removeActivator(Activator activator) {
+		sessionFactory.getCurrentSession().delete(activator);
+	}
+
+	@Override
+	@SuppressWarnings("unchecked")
+	public Activator getActivatorByCode(String code) {
+		List<Activator> activators = sessionFactory.getCurrentSession().createQuery("from Activator where code=?").setParameter(0, code).list();
+		if(activators.isEmpty())
+			return null;
+		
+		return activators.get(0);
+	}
+
+	@Override
+	public void addActivator(Activator activator) {
+		sessionFactory.getCurrentSession().save(activator);
+	}
+
+	@Override
+	public void editUser(User user) {
+		sessionFactory.getCurrentSession().merge(user);
 	}
 }

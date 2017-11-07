@@ -15,13 +15,11 @@ import com.politechnika.services.UserService;
 
 public class LoginAction extends ActionSupport implements SessionAware {
 	private static final String USER = "USER";
-
 	private static final long serialVersionUID = 2047477076086738030L;
 
 	private Map<String, Object> session = new HashMap<>();
 
 	private String username;
-	
 	private String password;
 	
 	@Autowired
@@ -35,14 +33,13 @@ public class LoginAction extends ActionSupport implements SessionAware {
 		
 		User user = userService.findByUsername(this.username);
 		
-		if(user == null) {
-			addFieldError("username", getText("errors.wrong.username"));
+		if(user == null || !validPassword(user)) {
+			addFieldError("username", getText("errors.wrong.loginCredential"));
 			return ERROR;
 		}
 		
-		
-		if(!validPassword(user)) {
-			addFieldError("password", getText("errors.wrong.password"));
+		if(!user.isActivated()) {
+			addFieldError("userNotActivated", getText("errors.userNotActivated"));
 			return ERROR;
 		}
 			

@@ -3,7 +3,10 @@
 
 <div id="login">
 	<s:actionerror/>
+	<s:fielderror fieldName="userNotExist"/>
+	<s:fielderror fieldName="cannotActivate"/>
 	<s:form action="loginLogin" namespace="/">
+		<s:fielderror fieldName="userNotActivated" />
 	    <s:textfield key="user.username" name="username"/>
 	    <s:password key="user.password" name="password"/>
 	    <s:submit key="submit"/>

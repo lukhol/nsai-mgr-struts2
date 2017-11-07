@@ -37,7 +37,7 @@
 		</action>
 		
 		<!--Localization action -->
-		<action name="locale" class="com.politechnika.actions.LocaleAction" method="execute">
+		<action name="Locale" class="com.politechnika.actions.LocaleAction" method="execute">
 			<result name="success" type="tiles">LoginDef</result>
 		</action>
 		
@@ -45,6 +45,8 @@
 		<action name="*Registration" class="com.politechnika.actions.RegistrationAction" method="{1}">
 			<result name="input" type="tiles">RegistrationDef</result>
 			<result name="success" type="tiles">HomeDef</result>
+			<result name="activated" type="tiles">LoginDef</result>
+			<result name="activationError" type="tiles">LoginDef</result>
 		</action>
 		
 		<!-- Registration action mapping -->

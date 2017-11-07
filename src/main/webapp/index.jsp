@@ -4,7 +4,7 @@
 <div>
 	Home page!
 	
-	<s:url action="formLogin" namespace="/" var="loginTag"/>
+	<s:url action="inputLogin" namespace="/" var="loginTag"/>
 	<s:url action="formRegistration" namespace="/" var="registerTag" />
 	
 	<br>

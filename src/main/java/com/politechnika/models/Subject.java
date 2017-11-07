@@ -2,6 +2,7 @@ package com.politechnika.models;
 
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,6 +21,7 @@ public class Subject {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long subjectId;
 	
+	@Column(nullable= false)
 	private String name;
 	
 	@ManyToMany
