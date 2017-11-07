@@ -7,7 +7,7 @@
 	<constant name="struts.custom.i18n.resources" value="i18n/MessageResources" />
 	<constant name="struts.mapper.action.prefix.enabled" value="true" />
 	
-	<package name="/parentPackage" extends="struts-default">
+	<package name="/parentPackage" namespace="/" extends="struts-default">
 		<result-types>
 			<result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult" />
 		</result-types>
@@ -27,10 +27,13 @@
 		<default-interceptor-ref name="nsaiDefaultStack" />
 		
 		<!-- Login action mapping -->
-		<action name="login" class="com.politechnika.actions.LoginAction" method="login">
+		<action name="*Login" class="com.politechnika.actions.LoginAction" method="{1}">
 			<result name="input" type="tiles">LoginDef</result>
 			<result name="success" type="tiles">WelcomeDef</result>
 			<result name="error" type="tiles">LoginDef</result>
+		</action>
+		<action name="home" class="com.politechnika.actions.HomeAction">
+			<result name="success" type="tiles">HomeDef</result>
 		</action>
 		
 		<!--Localization action -->
@@ -41,7 +44,7 @@
 		<!-- Registration action mapping -->
 		<action name="*Registration" class="com.politechnika.actions.RegistrationAction" method="{1}">
 			<result name="input" type="tiles">RegistrationDef</result>
-			<result name="success" type="tiles">WelcomeDef</result>
+			<result name="success" type="tiles">HomeDef</result>
 		</action>
 	</package>
 </struts>

@@ -6,7 +6,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import com.politechnika.models.User;
 import com.politechnika.services.UserService;
 
-public class RegisterAction extends ActionSupport {
+public class RegistrationAction extends ActionSupport {
 	private static final long serialVersionUID = 4872981664283281427L;
 	
 	@Autowired
@@ -14,12 +14,12 @@ public class RegisterAction extends ActionSupport {
 	
 	private User user;
 
-	public String register() throws Exception {
+	public String form() throws Exception {
 		return INPUT;
 	}
 	
-	public String complete() throws Exception {
-		userService.addUser(user);
+	public String register() throws Exception {
+		userService.addStudent(user);
 		return SUCCESS;
 	}
 

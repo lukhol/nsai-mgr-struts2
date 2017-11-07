@@ -9,7 +9,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.interceptor.Interceptor;
 import com.politechnika.actions.LocaleAction;
 import com.politechnika.actions.LoginAction;
-import com.politechnika.actions.RegisterAction;
+import com.politechnika.actions.RegistrationAction;
 
 public class LoginInterceptor implements Interceptor {
 
@@ -35,7 +35,7 @@ public class LoginInterceptor implements Interceptor {
 		ActionSupport action = (ActionSupport) invocation.getAction();
 
 		// validates all actions except LoginAction and RegisterAction
-		boolean validateAction = !(action instanceof LoginAction || action instanceof RegisterAction
+		boolean validateAction = !(action instanceof LoginAction || action instanceof RegistrationAction
 				|| action instanceof LocaleAction);
 
 		// check if session has expired

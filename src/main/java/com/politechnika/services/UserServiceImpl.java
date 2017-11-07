@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.politechnika.dao.UserDAO;
 import com.politechnika.models.User;
+import com.politechnika.models.UserRole;
 
 @Service
 public class UserServiceImpl implements UserService{
@@ -16,9 +17,10 @@ public class UserServiceImpl implements UserService{
 	
 	@Override
 	@Transactional
-	public void addUser(User user) {
+	public void addStudent(User user) {
 		user.setPassword(hashPassword(user.getPassword()));
-		userDAO.addUser(user);
+		user.setUserRole(UserRole.STUDENT);
+		userDAO.addStudent(user);
 	}
 
 	@Override
@@ -27,8 +29,7 @@ public class UserServiceImpl implements UserService{
 		return userDAO.findByUsername(username); 
 	}
 
-	@Override
-	public String hashPassword(String password) {
+	private String hashPassword(String password) {
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		return passwordEncoder.encode(password);
 	}

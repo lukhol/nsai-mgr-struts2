@@ -28,11 +28,19 @@
 	vertical-align:middle;
 }
 
-#header{
+#header {
 	float: left;
 	text-align: center;
 	margin: 5px;
 	font-size: 25px;
+}
+
+#app-header a, #app-header a::visited {
+	font-size: 10sp;
+}
+
+#app-header a::hover {
+	font-size: 30sp;
 }
 
 #languages{

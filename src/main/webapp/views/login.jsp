@@ -3,11 +3,10 @@
 
 <div id="login">
 	<s:actionerror/>
-	<s:form name="loginFrom" action="/login.action" method="POST">
+	<s:form action="loginLogin" namespace="/">
 	    <s:textfield key="user.username" name="username"/>
 	    <s:password key="user.password" name="password"/>
-		
-		<input type="hidden"  name="${_csrf.parameterName}" value="${_csrf.token}"/>
 	    <s:submit key="submit"/>
 	</s:form>
+	<a href="<s:url action="formRegistration" namespace="/" />"><s:text name="label.registration" /></a>
 </div>

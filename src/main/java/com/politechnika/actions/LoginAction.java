@@ -6,6 +6,7 @@ import java.util.Map;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.struts2.interceptor.SessionAware;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.opensymphony.xwork2.ActionSupport;
 import com.politechnika.models.User;
@@ -25,19 +26,24 @@ public class LoginAction extends ActionSupport implements SessionAware {
 	
 	@Autowired
 	private UserService userService;
+	
+	public String form() throws Exception {
+		clearFieldErrors();
+		return INPUT;
+	}
 
 	public String login() throws Exception {
 		
 		User user = userService.findByUsername(this.username);
 		
 		if(user == null) {
-			addActionError(getText("errors.wrong.username"));
+			addFieldError("username", getText("errors.wrong.username"));
 			return ERROR;
 		}
 		
 		
 		if(!validPassword(user)) {
-			addActionError(getText("errors.wrong.password"));
+			addFieldError("password", getText("errors.wrong.password"));
 			return ERROR;
 		}
 			
@@ -52,9 +58,17 @@ public class LoginAction extends ActionSupport implements SessionAware {
 	}
 
 	private boolean validPassword(User user) {
-		
-		return !StringUtils.isEmpty(this.password) ? userService.hashPassword(this.password).equals(user.getPassword()) : false;
-		
+		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		return passwordEncoder.matches(this.password, user.getPassword());
+	}
+	
+	public void validate(){
+		if(StringUtils.isEmpty(username)){
+			addFieldError("username", getText("validation.field.required"));
+		}
+		if(StringUtils.isEmpty(password)){
+			addFieldError("password", getText("validation.field.required"));
+		}
 	}
 
 	@Override

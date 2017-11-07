@@ -2,5 +2,5 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 
 <div>
-	Welcome <s:property value="user.name"/> !
+	Welcome <s:property value="username"/> !
 </div>
