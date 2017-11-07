@@ -5,29 +5,33 @@
 
 <tiles-definitions>
 	<definition name="baseLayout" template="/views/layout/baseLayout.jsp">
-		<put-attribute name="header" value="/views/layout/header.jsp"/>
-		<put-attribute name="body" value=""/>
-		<put-attribute name="footer" value="/views/layout/footer.jsp"/>
+		<put-attribute name="header" value="/views/layout/header.jsp" />
+		<put-attribute name="body" value="" />
+		<put-attribute name="footer" value="/views/layout/footer.jsp" />
 	</definition>
-	
+
 	<definition name="LoginDef" extends="baseLayout">
-		<put-attribute name="body" value="/views/login.jsp"/>
+		<put-attribute name="body" value="/views/login.jsp" />
 	</definition>
-	
+
 	<definition name="WelcomeDef" extends="baseLayout">
-		<put-attribute name="body" value="/views/welcome.jsp"/>
+		<put-attribute name="body" value="/views/welcome.jsp" />
 	</definition>
-	
+
 	<definition name="StudentNotesListDef" extends="baseLayout">
-		<put-attribute name="body" value="/views/studentNotesList.jsp"/>
+		<put-attribute name="body" value="/views/studentNotesList.jsp" />
 	</definition>
-	
+
 	<definition name="HomeDef" extends="baseLayout">
-		<put-attribute name="body" value="/index.jsp"/>
+		<put-attribute name="body" value="/index.jsp" />
 	</definition>
-	
+
 	<definition name="RegistrationDef" extends="baseLayout">
-		<put-attribute name="body" value="/views/registration.jsp"/>
+		<put-attribute name="body" value="/views/registration.jsp" />
 	</definition>
-	
+
+	<definition name="SubjectsListDef" extends="baseLayout">
+		<put-attribute name="body" value="/views/subjectsList.jsp" />
+	</definition>
+
 </tiles-definitions>

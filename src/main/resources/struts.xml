@@ -46,5 +46,11 @@
 			<result name="input" type="tiles">RegistrationDef</result>
 			<result name="success" type="tiles">HomeDef</result>
 		</action>
+		
+		<!-- Registration action mapping -->
+		<action name="*Subject" class="com.politechnika.actions.SubjectAction" method="{1}">
+			<result name="input" type="tiles">SubjectsListDef</result>
+			<result name="success" type="tiles">SubjectsListDef</result>
+		</action>
 	</package>
 </struts>

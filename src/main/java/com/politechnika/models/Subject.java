@@ -6,6 +6,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -18,8 +22,15 @@ public class Subject {
 	
 	private String name;
 	
+	@ManyToMany
+	@JoinTable(
+		      name="stud_subj",
+		      joinColumns=@JoinColumn(name="subjectId", referencedColumnName="subjectId"),
+		      inverseJoinColumns=@JoinColumn(name="studentId", referencedColumnName="userId"))
 	private List<User> students;
 	
+	@ManyToOne
+	@JoinColumn(name="teacherId")
 	private User teacher;
 
 	public Long getSubjectId() {

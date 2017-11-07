@@ -11,7 +11,6 @@ import com.politechnika.models.Note;
 import com.politechnika.models.Subject;
 import com.politechnika.models.User;
 import com.politechnika.services.NoteService;
-import com.politechnika.services.StudentService;
 import com.politechnika.services.SubjectService;
 
 public class SubjectAction extends ActionSupport implements TeacherAware {
@@ -39,9 +38,20 @@ public class SubjectAction extends ActionSupport implements TeacherAware {
 	
 	public String addNote() throws Exception {
 		
-		Subject subject = subjects.stream().filter(s -> s.getSubjectId().equals(subjectId)).collect(Collectors.toList()).get(0);
+		Subject subject = null;
+		for(Subject s : subjects) {
+			if(s.getSubjectId().equals(subjectId)) {
+				subject = s;
+			}
+		}
 		subject.setTeacher(teacher);
-		User student = subject.getStudents().stream().filter(s -> s.getUserId().equals(studentId)).collect(Collectors.toList()).get(0);
+		
+		User student = null;
+		for(User u : subject.getStudents()) {
+			if(u.getUserId().equals(studentId)) {
+				student = u;
+			}
+		}
 		
 		Note note = new Note();
 		note.setDate(Calendar.getInstance().getTime());
@@ -70,5 +80,28 @@ public class SubjectAction extends ActionSupport implements TeacherAware {
 	public void setSubjects(List<Subject> subjects) {
 		this.subjects = subjects;
 	}
-	
+
+	public String getNoteValue() {
+		return noteValue;
+	}
+
+	public void setNoteValue(String noteValue) {
+		this.noteValue = noteValue;
+	}
+
+	public Long getStudentId() {
+		return studentId;
+	}
+
+	public void setStudentId(Long studentId) {
+		this.studentId = studentId;
+	}
+
+	public Long getSubjectId() {
+		return subjectId;
+	}
+
+	public void setSubjectId(Long subjectId) {
+		this.subjectId = subjectId;
+	}	
 }

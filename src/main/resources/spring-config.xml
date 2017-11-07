@@ -22,7 +22,6 @@
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="com.mysql.jdbc.Driver" />
         <property name="url" value="jdbc:mysql://85.255.10.140:3306/nsai" />
-        <property name="hibernate.hbm2ddl.auto" value="create" />
         <property name="username" value="nsaiuser" />
         <property name="password" value="nsaipassword" />
     </bean>
@@ -32,6 +31,11 @@
         <property name="dataSource" ref="dataSource" />
         <property name="configLocation" value="classpath:hibernate.cfg.xml" />
         <property name="packagesToScan" value="com.politechnika.models" />
+        <property name="hibernateProperties">
+         <props>
+            <prop key="hibernate.hbm2ddl.auto">create</prop>
+         </props>
+      </property>
     </bean>
 
     <!-- Transaction manager -->
