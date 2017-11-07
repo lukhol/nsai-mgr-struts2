@@ -4,13 +4,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.opensymphony.xwork2.ActionSupport;
 import com.politechnika.models.User;
-import com.politechnika.services.UserService;
+import com.politechnika.services.StudentService;
 
 public class RegistrationAction extends ActionSupport {
 	private static final long serialVersionUID = 4872981664283281427L;
 	
 	@Autowired
-	UserService userService;
+	StudentService studentService;
 	
 	private User user;
 
@@ -19,7 +19,7 @@ public class RegistrationAction extends ActionSupport {
 	}
 	
 	public String register() throws Exception {
-		userService.addStudent(user);
+		studentService.addStudent(user);
 		return SUCCESS;
 	}
 

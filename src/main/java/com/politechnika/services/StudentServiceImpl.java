@@ -10,16 +10,21 @@ import com.politechnika.models.User;
 import com.politechnika.models.UserRole;
 
 @Service
-public class UserServiceImpl implements UserService{
+public class StudentServiceImpl implements StudentService {
 
 	@Autowired
 	UserDAO userDAO;
-
+	
 	@Override
 	@Transactional
-	public User findByUsername(String username) {
-		return userDAO.findByUsername(username); 
+	public void addStudent(User user) {
+		user.setPassword(hashPassword(user.getPassword()));
+		user.setUserRole(UserRole.STUDENT);
+		userDAO.addStudent(user);
 	}
-
-
+	
+	private String hashPassword(String password) {
+		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		return passwordEncoder.encode(password);
+	}
 }

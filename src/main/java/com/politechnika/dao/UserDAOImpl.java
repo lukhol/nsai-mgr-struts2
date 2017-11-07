@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.politechnika.models.User;
+import com.politechnika.models.UserRole;
 
 @Repository
 public class UserDAOImpl implements UserDAO{
@@ -32,5 +33,15 @@ public class UserDAOImpl implements UserDAO{
 		} else {
 			return null;
 		}
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<User> findAll(UserRole role) {
+		List<User> users = new ArrayList<User>();
+
+		users = sessionFactory.getCurrentSession().createQuery("from User where userRole=?").setParameter(0, role.ordinal()).list();
+
+		return users;
 	}
 }

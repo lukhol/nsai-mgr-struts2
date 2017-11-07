@@ -28,7 +28,6 @@ public class LoginAction extends ActionSupport implements SessionAware {
 	private UserService userService;
 	
 	public String form() throws Exception {
-		clearFieldErrors();
 		return INPUT;
 	}
 
@@ -48,7 +47,7 @@ public class LoginAction extends ActionSupport implements SessionAware {
 		}
 			
 		UserContext context = new UserContext();
-		context.setUserId(user.getId());
+		context.setUserId(user.getUserId());
 		context.setRole(user.getUserRole());
 
 		// put the user context to the session parameter

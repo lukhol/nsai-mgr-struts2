@@ -10,6 +10,9 @@ import com.opensymphony.xwork2.interceptor.Interceptor;
 import com.politechnika.actions.LocaleAction;
 import com.politechnika.actions.LoginAction;
 import com.politechnika.actions.RegistrationAction;
+import com.politechnika.actions.SubjectAction;
+import com.politechnika.models.User;
+import com.politechnika.models.UserRole;
 
 public class LoginInterceptor implements Interceptor {
 
@@ -47,11 +50,17 @@ public class LoginInterceptor implements Interceptor {
 			return Action.LOGIN;
 		}
 
-		/*
-		 * Action action = (Action) invocation.getAction(); if(action instanceof
-		 * JAKAS_AKCJA_KTORA_POTRZEBUJE_USERA) { ((JAKAS_AKCJA_KTORA_POTRZEBUJE_USERA)
-		 * action).setUser(user)
-		 */
+		if (action instanceof SubjectAction) {
+			User loggedUser = (User) sessionAttributes.get(USER);
+			if (UserRole.TEACHER.equals(loggedUser.getUserRole())) {
+				((SubjectAction) action).setTeacher(loggedUser);
+			} else {
+				action.addActionError(action.getText("errors.teacherRole.required"));
+				// if user is not teacher -> to the login page
+				return Action.LOGIN;
+			}
+		}
+
 		return invocation.invoke();
 
 	}
