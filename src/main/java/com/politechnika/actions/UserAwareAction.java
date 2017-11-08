@@ -5,6 +5,8 @@ import com.politechnika.models.User;
 
 public abstract class UserAwareAction extends ActionSupport {
 	
+	private static final long serialVersionUID = 7252201647920094845L;
+	
 	private User user;
 
 	public void setUser(User user) {

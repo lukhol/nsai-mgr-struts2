@@ -3,8 +3,6 @@ package com.politechnika.interceptor;
 import java.lang.annotation.Annotation;
 import java.util.Map;
 
-import org.springframework.lang.UsesSunHttpServer;
-
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionInvocation;
@@ -13,10 +11,9 @@ import com.opensymphony.xwork2.interceptor.Interceptor;
 import com.politechnika.actions.LocaleAction;
 import com.politechnika.actions.LoginAction;
 import com.politechnika.actions.RegistrationAction;
-import com.politechnika.actions.SubjectAction;
 import com.politechnika.actions.UserAwareAction;
-import com.politechnika.models.User;
 import com.politechnika.models.RoleName;
+import com.politechnika.models.User;
 
 public class LoginInterceptor implements Interceptor {
 

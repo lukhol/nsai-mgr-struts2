@@ -5,12 +5,15 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.politechnika.interceptor.Role;
 import com.politechnika.models.Note;
+import com.politechnika.models.RoleName;
 import com.politechnika.models.Subject;
 import com.politechnika.models.User;
 import com.politechnika.services.NoteService;
 import com.politechnika.services.SubjectService;
 
+@Role(roleNames= {RoleName.TEACHER})
 public class SubjectAction extends UserAwareAction {
 
 	private static final long serialVersionUID = 7164702001289608229L;
