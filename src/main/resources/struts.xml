@@ -26,13 +26,19 @@
 		<!-- mark the interceptors stack with the custom login interceptor as the default one -->
 		<default-interceptor-ref name="nsaiDefaultStack" />
 		
+		<global-results>
+			<result name="login" type="tiles">LoginDef</result>
+		</global-results>
+		
 		<!-- Login action mapping -->
 		<action name="*Login" class="com.politechnika.actions.LoginAction" method="{1}">
 			<result name="input" type="tiles">LoginDef</result>
 			<result name="success" type="tiles">WelcomeDef</result>
 			<result name="error" type="tiles">LoginDef</result>
 		</action>
-		<action name="home" class="com.politechnika.actions.HomeAction">
+		
+		<!-- HomePage action -->
+		<action name="home" class="com.politechnika.actions.HomeAction" method="execute">
 			<result name="success" type="tiles">HomeDef</result>
 		</action>
 		

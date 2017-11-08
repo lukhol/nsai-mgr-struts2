@@ -43,6 +43,7 @@ public class LoginInterceptor implements Interceptor {
 				|| action instanceof LocaleAction);
 
 		// check if session has expired
+		/*
 		if (validateAction && (sessionAttributes == null || sessionAttributes.get(USER) == null)) {
 			action.addActionError(action.getText("errors.sessionExpired"));
 
@@ -50,14 +51,23 @@ public class LoginInterceptor implements Interceptor {
 			// @see global-results in the struts.xml file
 			return Action.LOGIN;
 		}
+		*/
 		
 		User user = (User) sessionAttributes.get(USER);
 		if(action instanceof UserAwareAction) {
 			((UserAwareAction) action).setUser(user);
 		}
 		
-		if(action.getClass().isAnnotationPresent(Role.class) && !user.getUserRole().equals(RoleName.ADMIN)) {
-			Annotation annotation = action.getClass().getAnnotation(Role.class);
+		Class<? extends ActionSupport> actionClass = action.getClass();
+		
+		if(actionClass.isAnnotationPresent(Role.class)) {
+			if(user == null)
+				return Action.LOGIN;
+			
+			if(user.getUserRole().equals(RoleName.ADMIN))
+				return invocation.invoke();
+			
+			Annotation annotation = actionClass.getAnnotation(Role.class);
 			Role role = (Role) annotation;
 			boolean userHasPrivileges = false;
 			for(RoleName temp : role.roleNames()) {

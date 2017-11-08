@@ -23,7 +23,7 @@
 	</definition>
 
 	<definition name="HomeDef" extends="baseLayout">
-		<put-attribute name="body" value="/index.jsp" />
+		<put-attribute name="body" value="/views/home.jsp" />
 	</definition>
 
 	<definition name="RegistrationDef" extends="baseLayout">
