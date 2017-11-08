@@ -1,13 +1,17 @@
 package com.politechnika.actions;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.struts2.interceptor.ServletRequestAware;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.opensymphony.xwork2.ActionSupport;
 import com.politechnika.models.User;
+import com.politechnika.services.CaptchaService;
 import com.politechnika.services.StudentService;
 import com.politechnika.services.UserService;
 
-public class RegistrationAction extends ActionSupport {
+public class RegistrationAction extends ActionSupport implements ServletRequestAware {
 	private static final long serialVersionUID = 4872981664283281427L;
 	
 	private static final String ACTIVATED = "activated";
@@ -19,6 +23,10 @@ public class RegistrationAction extends ActionSupport {
 	@Autowired
 	UserService userService;
 	
+	@Autowired
+	CaptchaService captchaService;
+	
+	private HttpServletRequest request;
 	private String activationCode;
 	private String username;
 	private User user;
@@ -28,6 +36,14 @@ public class RegistrationAction extends ActionSupport {
 	}
 	
 	public String register() throws Exception {
+		
+		String gRecaptchaResponse = request.getParameter("g-recaptcha-response");
+		
+		if(!captchaService.verifyCaptcha(gRecaptchaResponse)) {
+			//Add error message;
+			return ERROR;
+		}
+		
 		studentService.addStudent(user);
 		return SUCCESS;
 	}
@@ -69,5 +85,14 @@ public class RegistrationAction extends ActionSupport {
 
 	public void setUsername(String username) {
 		this.username = username;
+	}
+
+	@Override
+	public void setServletRequest(HttpServletRequest request) {
+		this.request = request;
+	}
+
+	public HttpServletRequest getServletRequest() {
+		return this.request;
 	}
 }

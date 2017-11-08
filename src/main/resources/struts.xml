@@ -45,6 +45,7 @@
 		<action name="*Registration" class="com.politechnika.actions.RegistrationAction" method="{1}">
 			<result name="input" type="tiles">RegistrationDef</result>
 			<result name="success" type="tiles">HomeDef</result>
+			<result name="error" type="tiles">RegistrationDef</result>
 			<result name="activated" type="tiles">LoginDef</result>
 			<result name="activationError" type="tiles">LoginDef</result>
 		</action>
