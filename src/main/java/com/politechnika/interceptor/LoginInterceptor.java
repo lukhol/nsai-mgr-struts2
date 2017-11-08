@@ -11,6 +11,7 @@ import com.politechnika.actions.LocaleAction;
 import com.politechnika.actions.LoginAction;
 import com.politechnika.actions.RegistrationAction;
 import com.politechnika.actions.SubjectAction;
+import com.politechnika.actions.UserAwareAction;
 import com.politechnika.models.User;
 import com.politechnika.models.UserRole;
 
@@ -49,12 +50,13 @@ public class LoginInterceptor implements Interceptor {
 			// @see global-results in the struts.xml file
 			return Action.LOGIN;
 		}
-
+		
+		User user = (User) sessionAttributes.get(USER);
+		if(action instanceof UserAwareAction) {
+			((UserAwareAction) action).setUser(user);
+		}
 		if (action instanceof SubjectAction) {
-			User loggedUser = (User) sessionAttributes.get(USER);
-			if (UserRole.TEACHER.equals(loggedUser.getUserRole())) {
-				((SubjectAction) action).setTeacher(loggedUser);
-			} else {
+			if (!UserRole.TEACHER.equals(user.getUserRole())) {
 				action.addActionError(action.getText("errors.teacherRole.required"));
 				// if user is not teacher -> to the login page
 				return Action.LOGIN;

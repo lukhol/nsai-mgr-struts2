@@ -10,7 +10,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.opensymphony.xwork2.ActionSupport;
 import com.politechnika.models.User;
-import com.politechnika.models.UserContext;
 import com.politechnika.services.UserService;
 
 public class LoginAction extends ActionSupport implements SessionAware {
@@ -42,13 +41,9 @@ public class LoginAction extends ActionSupport implements SessionAware {
 			addFieldError("userNotActivated", getText("errors.userNotActivated"));
 			return ERROR;
 		}
-			
-		UserContext context = new UserContext();
-		context.setUserId(user.getUserId());
-		context.setRole(user.getUserRole());
 
-		// put the user context to the session parameter
-		this.session.put(USER, context);
+		// put the user to the session parameter
+		this.session.put(USER, user);
 
 		return SUCCESS;
 	}

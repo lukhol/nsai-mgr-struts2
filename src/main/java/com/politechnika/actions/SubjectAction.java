@@ -2,7 +2,6 @@ package com.politechnika.actions;
 
 import java.util.Calendar;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -13,11 +12,10 @@ import com.politechnika.models.User;
 import com.politechnika.services.NoteService;
 import com.politechnika.services.SubjectService;
 
-public class SubjectAction extends ActionSupport implements TeacherAware {
+public class SubjectAction extends UserAwareAction {
 
 	private static final long serialVersionUID = 7164702001289608229L;
 	
-	private User teacher;
 	private List<Subject> subjects;
 	
 	private String noteValue;
@@ -32,7 +30,7 @@ public class SubjectAction extends ActionSupport implements TeacherAware {
 	
 	public String list() throws Exception {
 		
-		subjects = subjectService.findAll(teacher.getUserId());
+		subjects = subjectService.findAll(getUser().getUserId());
 		return INPUT;
 	}
 	
@@ -44,7 +42,7 @@ public class SubjectAction extends ActionSupport implements TeacherAware {
 				subject = s;
 			}
 		}
-		subject.setTeacher(teacher);
+		subject.setTeacher(getUser());
 		
 		User student = null;
 		for(User u : subject.getStudents()) {
@@ -62,15 +60,6 @@ public class SubjectAction extends ActionSupport implements TeacherAware {
 		noteService.addNote(note);
 		
 		return SUCCESS;
-	}
-	
-	@Override
-	public void setTeacher(User teacher) {
-		this.teacher = teacher;
-	}
-
-	public User getTeacher() {
-		return teacher;
 	}
 
 	public List<Subject> getSubjects() {
