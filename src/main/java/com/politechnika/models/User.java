@@ -43,7 +43,7 @@ public class User {
 	
 	@Enumerated
 	@Column(nullable=false)
-	private UserRole userRole;
+	private RoleName userRole;
 	
 	@Version
 	private int optimisticLock;
@@ -72,11 +72,11 @@ public class User {
 		this.password = password;
 	}
 	
-	public UserRole getUserRole() {
+	public RoleName getUserRole() {
 		return userRole;
 	}
 	
-	public void setUserRole(UserRole userRole) {
+	public void setUserRole(RoleName userRole) {
 		this.userRole = userRole;
 	}
 	

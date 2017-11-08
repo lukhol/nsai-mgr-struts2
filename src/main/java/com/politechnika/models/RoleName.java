@@ -1,5 +1,5 @@
 package com.politechnika.models;
 
-public enum UserRole {
+public enum RoleName {
 	STUDENT, TEACHER, ADMIN;
 }

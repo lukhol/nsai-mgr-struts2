@@ -8,7 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.politechnika.dao.UserDAO;
 import com.politechnika.models.Activator;
 import com.politechnika.models.User;
-import com.politechnika.models.UserRole;
+import com.politechnika.models.RoleName;
 
 @Service
 public class StudentServiceImpl implements StudentService {
@@ -23,7 +23,7 @@ public class StudentServiceImpl implements StudentService {
 	@Transactional
 	public void addStudent(User user) {
 		user.setPassword(hashPassword(user.getPassword()));
-		user.setUserRole(UserRole.STUDENT);
+		user.setUserRole(RoleName.STUDENT);
 		
 		Activator activator = new Activator();
 		activator.setUser(user);

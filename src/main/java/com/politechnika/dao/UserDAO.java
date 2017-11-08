@@ -4,13 +4,13 @@ import java.util.List;
 
 import com.politechnika.models.Activator;
 import com.politechnika.models.User;
-import com.politechnika.models.UserRole;
+import com.politechnika.models.RoleName;
 
 public interface UserDAO {
 	
 	public void addStudent(User user);
 	public User findByUsername(String username);
-	public List<User> findAll(UserRole role);
+	public List<User> findAll(RoleName role);
 	public void editUser(User user);
 	
 	public Activator getActivatorByUser(User user);

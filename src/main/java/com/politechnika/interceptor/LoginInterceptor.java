@@ -1,6 +1,9 @@
 package com.politechnika.interceptor;
 
+import java.lang.annotation.Annotation;
 import java.util.Map;
+
+import org.springframework.lang.UsesSunHttpServer;
 
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionContext;
@@ -13,7 +16,7 @@ import com.politechnika.actions.RegistrationAction;
 import com.politechnika.actions.SubjectAction;
 import com.politechnika.actions.UserAwareAction;
 import com.politechnika.models.User;
-import com.politechnika.models.UserRole;
+import com.politechnika.models.RoleName;
 
 public class LoginInterceptor implements Interceptor {
 
@@ -55,9 +58,19 @@ public class LoginInterceptor implements Interceptor {
 		if(action instanceof UserAwareAction) {
 			((UserAwareAction) action).setUser(user);
 		}
-		if (action instanceof SubjectAction) {
-			if (!UserRole.TEACHER.equals(user.getUserRole())) {
-				action.addActionError(action.getText("errors.teacherRole.required"));
+		
+		if(action.getClass().isAnnotationPresent(Role.class) && !user.getUserRole().equals(RoleName.ADMIN)) {
+			Annotation annotation = action.getClass().getAnnotation(Role.class);
+			Role role = (Role) annotation;
+			boolean userHasPrivileges = false;
+			for(RoleName temp : role.roleNames()) {
+				if(temp.equals(user.getUserRole())) {
+					userHasPrivileges = true;
+					break;
+				}
+			}
+			if(!userHasPrivileges) {
+				action.addActionError(action.getText("errors.accessDenied"));
 				// if user is not teacher -> to the login page
 				return Action.LOGIN;
 			}

@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.politechnika.models.Activator;
 import com.politechnika.models.User;
-import com.politechnika.models.UserRole;
+import com.politechnika.models.RoleName;
 
 @Repository
 public class UserDAOImpl implements UserDAO{
@@ -38,7 +38,7 @@ public class UserDAOImpl implements UserDAO{
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<User> findAll(UserRole role) {
+	public List<User> findAll(RoleName role) {
 		List<User> users = new ArrayList<User>();
 
 		users = sessionFactory.getCurrentSession().createQuery("from User where userRole=?").setParameter(0, role.ordinal()).list();
