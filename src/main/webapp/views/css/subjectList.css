@@ -1,0 +1,9 @@
+.uczniowie {
+	display:none;
+}
+
+.przedmioty:hover {
+	background: #008080;
+	cursor: pointer;
+	transition: background 1s ease;
+}
