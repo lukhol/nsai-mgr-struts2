@@ -1,10 +1,9 @@
 package com.politechnika.actions;
 
-import java.util.HashMap;
-import java.util.Map;
+import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang3.StringUtils;
-import org.apache.struts2.interceptor.SessionAware;
+import org.apache.struts2.interceptor.ServletRequestAware;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
@@ -12,17 +11,16 @@ import com.opensymphony.xwork2.ActionSupport;
 import com.politechnika.models.User;
 import com.politechnika.services.UserService;
 
-public class LoginAction extends ActionSupport implements SessionAware {
+public class LoginAction extends ActionSupport implements ServletRequestAware {
 	private static final String USER = "USER";
 	private static final long serialVersionUID = 2047477076086738030L;
-
-	private Map<String, Object> session = new HashMap<>();
 
 	private String username;
 	private String password;
 	
 	@Autowired
 	private UserService userService;
+	private HttpServletRequest request;
 	
 	public String form() throws Exception {
 		return INPUT;
@@ -43,7 +41,7 @@ public class LoginAction extends ActionSupport implements SessionAware {
 		}
 
 		// put the user to the session parameter
-		this.session.put(USER, user);
+		request.getSession().setAttribute(USER, user);
 
 		return SUCCESS;
 	}
@@ -61,11 +59,6 @@ public class LoginAction extends ActionSupport implements SessionAware {
 			addFieldError("password", getText("validation.field.required"));
 		}
 	}
-
-	@Override
-	public void setSession(Map<String, Object> session) {
-		this.session = session;
-	}
 	
 	public String getUsername() {
 		return username;
@@ -81,5 +74,11 @@ public class LoginAction extends ActionSupport implements SessionAware {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	@Override
+	public void setServletRequest(HttpServletRequest request) {
+		this.request = request;
+		
 	}
 }

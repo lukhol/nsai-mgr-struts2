@@ -1,13 +1,15 @@
 package com.politechnika.interceptor;
 
 import java.lang.annotation.Annotation;
-import java.util.Map;
+
+import javax.servlet.http.HttpSession;
+
+import org.apache.struts2.ServletActionContext;
 
 import com.opensymphony.xwork2.Action;
-import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.ActionSupport;
-import com.opensymphony.xwork2.interceptor.Interceptor;
+import com.opensymphony.xwork2.interceptor.AbstractInterceptor;
 import com.politechnika.actions.LocaleAction;
 import com.politechnika.actions.LoginAction;
 import com.politechnika.actions.RegistrationAction;
@@ -15,26 +17,14 @@ import com.politechnika.actions.UserAwareAction;
 import com.politechnika.models.RoleName;
 import com.politechnika.models.User;
 
-public class LoginInterceptor implements Interceptor {
+public class LoginInterceptor extends AbstractInterceptor {
 
 	private static final long serialVersionUID = -8700326539812410581L;
 	private static final String USER = "USER";
 
-	public LoginInterceptor() {
-	}
-
-	public void destroy() {
-
-	}
-
-	public void init() {
-
-	}
-
 	public String intercept(ActionInvocation invocation) throws Exception {
 
-		final ActionContext context = invocation.getInvocationContext();
-		Map<String, Object> sessionAttributes = context.getSession();
+		HttpSession sessionAttributes = ServletActionContext.getRequest().getSession();
 
 		ActionSupport action = (ActionSupport) invocation.getAction();
 
@@ -42,18 +32,17 @@ public class LoginInterceptor implements Interceptor {
 		boolean validateAction = !(action instanceof LoginAction || action instanceof RegistrationAction
 				|| action instanceof LocaleAction);
 
-		// check if session has expired
-		/*
-		if (validateAction && (sessionAttributes == null || sessionAttributes.get(USER) == null)) {
+		// check if session has expired		
+		if (validateAction && (sessionAttributes == null || sessionAttributes.getAttribute(USER) == null)) {
 			action.addActionError(action.getText("errors.sessionExpired"));
 
 			// if session expired then move user to the login page
 			// @see global-results in the struts.xml file
 			return Action.LOGIN;
 		}
-		*/
 		
-		User user = (User) sessionAttributes.get(USER);
+		
+		User user = (User) sessionAttributes.getAttribute(USER);
 		if(action instanceof UserAwareAction) {
 			((UserAwareAction) action).setUser(user);
 		}
