@@ -28,6 +28,7 @@
 		
 		<global-results>
 			<result name="login" type="tiles">LoginDef</result>
+			<result name="home" type="tiles">HomeDef</result>
 		</global-results>
 		
 		<!-- Login action mapping -->

@@ -1,8 +1,17 @@
+html {
+    min-height: 100vh;
+    margin: 0;
+}
+body {
+    min-height: 100%;
+    margin: 0;
+}
+
 #app-body {
 	background: #4fbbe0;
 	width: 100%;
-	padding-top: 100px;
-	padding-bottom: 100px;
+	padding-top: 150px;
+	padding-bottom: 150px;
 	text-align: center;
 }
 
@@ -11,42 +20,60 @@
 	color: #ffffff;
 	width: 100%;
 	height: 100px;
+	overflow: hidden;
 }
 
 #app-footer {
 	background: #232323;
 	color: #ffffff;
 	width: 100%;
-	height: 100px;
-	text-align: center;
+	height: 50px;
+	overflow: hidden;
 }
 
 #footer {
 	text-align: center;
 	width: 100%;
 	height: 100%;
-	vertical-align:middle;
+	vertical-align: middle;
 }
 
 #header {
-	float: left;
+	float: center;
 	text-align: center;
 	margin: 5px;
 	font-size: 25px;
+	padding-top: 20px;	
+	vertical-align: middle;
 }
 
 #app-header a, #app-header a::visited {
 	font-size: 10sp;
 }
 
-#app-header a::hover {
+#app-header a:hover {
 	font-size: 30sp;
+	text-decoration: underline;
+}
+
+#app-header a:visited {
+	color: white;
+	text-decoration: none;
+}
+
+#app-header a {
+	color: white;
+	text-decoration: none;
 }
 
 #languages{
+	float: right;
+	margin: 10px 10px 10px 10px;
+}
+
+#home{
 	float: left;
-	margin: 5px;
-	width: 100px;
+	margin: 10px 10px 10px 10px;
 }
 
 #login{

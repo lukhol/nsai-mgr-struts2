@@ -9,14 +9,20 @@
 	<s:param name="request_locale">pl</s:param>
 </s:url>
 
+<div>
+	<div id="languages">
+		<span> <s:a href="%{loginEN}">English</s:a></span> 
+		<span> <s:a href="%{loginPL}">Polski</s:a></span>
+	</div>
+	
+	<div id="home">
+		<span> <a href="<s:url action="home" namespace="/" />"> Home</a> </span>
+	</div>
+</div>
 <div id="header">
-	Header
+	NSAI - Struts2
 </div>
 
-<div class="nav-item" id="languages">
-	<span> <s:a href="%{loginEN}">English</s:a></span> 
-	<span> <s:a href="%{loginPL}">Polski</s:a></span>
-</div>
 
 <div style="clear: both;"></div>
 

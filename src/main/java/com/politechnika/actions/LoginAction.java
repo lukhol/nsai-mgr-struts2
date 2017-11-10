@@ -1,12 +1,14 @@
 package com.politechnika.actions;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.struts2.interceptor.ServletRequestAware;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionSupport;
 import com.politechnika.models.User;
 import com.politechnika.services.UserService;
@@ -20,6 +22,7 @@ public class LoginAction extends ActionSupport implements ServletRequestAware {
 	
 	@Autowired
 	private UserService userService;
+	
 	private HttpServletRequest request;
 	
 	public String form() throws Exception {
@@ -28,9 +31,12 @@ public class LoginAction extends ActionSupport implements ServletRequestAware {
 
 	public String login() throws Exception {
 		
+		if(request.getSession().getAttribute(USER) != null)
+			return "home";
+		
 		User user = userService.findByUsername(this.username);
 		
-		if(user == null || !validPassword(user)) {
+		if(user == null || !userService.validPassword(user, password)) {
 			addFieldError("username", getText("errors.wrong.loginCredential"));
 			return ERROR;
 		}
@@ -45,10 +51,18 @@ public class LoginAction extends ActionSupport implements ServletRequestAware {
 
 		return SUCCESS;
 	}
-
-	private boolean validPassword(User user) {
-		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-		return passwordEncoder.matches(this.password, user.getPassword());
+	
+	public String logout() throws Exception {
+		
+		HttpSession session = request.getSession();
+		
+		User user = (User)session.getAttribute(USER);
+		
+		if(user != null) {
+			session.removeAttribute(USER);
+		}
+		
+		return Action.LOGIN;
 	}
 	
 	public void validate(){

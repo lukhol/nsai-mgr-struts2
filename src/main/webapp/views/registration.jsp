@@ -3,7 +3,7 @@
 <!-- Google recaptcha scripts: -->
 <script src='https://www.google.com/recaptcha/api.js'></script>
 
-<div>
+<div id="login">
 	<s:form action="registerRegistration" namespace="/">
 		<s:textfield key="user.username" />
 		<s:password key="user.password"/>

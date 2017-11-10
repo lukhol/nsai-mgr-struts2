@@ -15,7 +15,5 @@ public abstract class UserAwareAction extends ActionSupport {
 
 	public User getUser() {
 		return user;
-	}
-	
-	
+	}	
 }

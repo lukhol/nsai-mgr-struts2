@@ -1,15 +1,12 @@
 package com.politechnika.interceptor;
 
-import java.lang.annotation.Annotation;
-
 import javax.servlet.http.HttpSession;
-
 import org.apache.struts2.ServletActionContext;
-
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.interceptor.AbstractInterceptor;
+import com.politechnika.actions.HomeAction;
 import com.politechnika.actions.LocaleAction;
 import com.politechnika.actions.LoginAction;
 import com.politechnika.actions.RegistrationAction;
@@ -22,6 +19,16 @@ public class LoginInterceptor extends AbstractInterceptor {
 	private static final long serialVersionUID = -8700326539812410581L;
 	private static final String USER = "USER";
 
+	public LoginInterceptor() {
+	}
+
+	public void destroy() {
+	}
+
+	public void init() {
+
+	}
+
 	public String intercept(ActionInvocation invocation) throws Exception {
 
 		HttpSession sessionAttributes = ServletActionContext.getRequest().getSession();
@@ -30,19 +37,19 @@ public class LoginInterceptor extends AbstractInterceptor {
 
 		// validates all actions except LoginAction and RegisterAction
 		boolean validateAction = !(action instanceof LoginAction || action instanceof RegistrationAction
-				|| action instanceof LocaleAction);
+				|| action instanceof LocaleAction || action instanceof HomeAction);
 
+		User user = (User) sessionAttributes.getAttribute(USER);
+		
 		// check if session has expired		
-		if (validateAction && (sessionAttributes == null || sessionAttributes.getAttribute(USER) == null)) {
+		if (validateAction && (sessionAttributes == null || user == null)) {
 			action.addActionError(action.getText("errors.sessionExpired"));
 
-			// if session expired then move user to the login page
-			// @see global-results in the struts.xml file
+			// if session expired then move user to the login page, @see global-results in the struts.xml file
 			return Action.LOGIN;
 		}
-		
-		
-		User user = (User) sessionAttributes.getAttribute(USER);
+
+		//
 		if(action instanceof UserAwareAction) {
 			((UserAwareAction) action).setUser(user);
 		}
@@ -56,8 +63,7 @@ public class LoginInterceptor extends AbstractInterceptor {
 			if(user.getUserRole().equals(RoleName.ADMIN))
 				return invocation.invoke();
 			
-			Annotation annotation = actionClass.getAnnotation(Role.class);
-			Role role = (Role) annotation;
+			Role role = actionClass.getAnnotation(Role.class);
 			boolean userHasPrivileges = false;
 			for(RoleName temp : role.roleNames()) {
 				if(temp.equals(user.getUserRole())) {
@@ -65,14 +71,13 @@ public class LoginInterceptor extends AbstractInterceptor {
 					break;
 				}
 			}
+			
 			if(!userHasPrivileges) {
 				action.addActionError(action.getText("errors.accessDenied"));
-				// if user is not teacher -> to the login page
 				return Action.LOGIN;
 			}
 		}
 
 		return invocation.invoke();
-
 	}
 }
