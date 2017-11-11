@@ -20,6 +20,7 @@ public class TeacherDAOImpl implements TeacherDAO {
 	private SessionFactory sessionFactory;
 	
 	@Override
+	@SuppressWarnings("unchecked")
 	public List<User> findAll() {
 		List<User> users = sessionFactory.getCurrentSession().createQuery("from User where userRole=?").setParameter(0, RoleName.TEACHER).list();
 
@@ -36,8 +37,8 @@ public class TeacherDAOImpl implements TeacherDAO {
 	}
 
 	@Override
-	public void delete(Long teacher) {
-		sessionFactory.getCurrentSession().createQuery("delete from User where userId=?").setParameter(0, teacher).executeUpdate();
+	public void delete(Long teacherId) {
+		sessionFactory.getCurrentSession().createQuery("delete from User where userId=?").setParameter(0, teacherId).executeUpdate();
 	}
 
 }

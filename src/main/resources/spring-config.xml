@@ -33,7 +33,7 @@
         <property name="packagesToScan" value="com.politechnika.models" />
         <property name="hibernateProperties">
          <props>
-            <prop key="hibernate.hbm2ddl.auto">update</prop>
+            <prop key="hibernate.hbm2ddl.auto">create</prop>
          </props>
       </property>
     </bean>
@@ -42,6 +42,8 @@
     <bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
         <property name="sessionFactory" ref="sessionFactory"></property>
     </bean>
+    
+    <bean id="passwordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
     
     <context:component-scan base-package="com.politechnika" /> 
 </beans>

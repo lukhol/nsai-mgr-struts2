@@ -23,10 +23,13 @@ public class StudentServiceImpl implements StudentService {
 	@Autowired
 	EmailSender emailSender;
 	
+	@Autowired
+	BCryptPasswordEncoder passwordEncoder;
+	
 	@Override
 	@Transactional
 	public void addStudent(User user) {
-		user.setPassword(hashPassword(user.getPassword()));
+		user.setPassword(passwordEncoder.encode(user.getPassword()));
 		user.setUserRole(RoleName.STUDENT);
 		
 		Activator activator = new Activator();
@@ -34,7 +37,7 @@ public class StudentServiceImpl implements StudentService {
 		Integer code = user.getEmail().hashCode();
 		activator.setCode(code.toString());
 		userDAO.addActivator(activator);
-		userDAO.addStudent(user);
+		userDAO.addUser(user);
 		
 		StringBuilder messageBuilder = new StringBuilder();
 		messageBuilder
@@ -44,11 +47,6 @@ public class StudentServiceImpl implements StudentService {
 			.append(user.getUsername());
 		
 		emailSender.sendEmail(user.getEmail(), "Edu nsai - activate mail", "Click to activate your account: " + messageBuilder.toString());
-	}
-	
-	private String hashPassword(String password) {
-		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-		return passwordEncoder.encode(password);
 	}
 
 	@Override

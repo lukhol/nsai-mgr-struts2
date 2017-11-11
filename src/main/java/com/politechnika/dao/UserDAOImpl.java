@@ -18,7 +18,7 @@ public class UserDAOImpl implements UserDAO{
 	SessionFactory sessionFactory;
 	
 	@Override
-	public void addStudent(User user) {	
+	public void addUser(User user) {	
 		sessionFactory.getCurrentSession().save(user);
 	}
 	

@@ -8,7 +8,7 @@ import com.politechnika.models.RoleName;
 
 public interface UserDAO {
 	
-	public void addStudent(User user);
+	public void addUser(User user);
 	public User findByUsername(String username);
 	public List<User> findAll(RoleName role);
 	public void editUser(User user);

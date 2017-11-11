@@ -21,6 +21,7 @@ public class SubjectDAOImpl implements SubjectDAO {
 	}
 
 	@Override
+	@SuppressWarnings("unchecked")
 	public List<Subject> findAllByTeacher(User teacher) {
 		return sessionFactory.getCurrentSession().createQuery("from Subject where teacher=?").setParameter(0, teacher).list();
 	}

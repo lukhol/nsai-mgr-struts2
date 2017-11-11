@@ -14,6 +14,9 @@ public class UserServiceImpl implements UserService{
 
 	@Autowired
 	UserDAO userDAO;
+	
+	@Autowired
+	BCryptPasswordEncoder passwordEncoder;
 
 	@Override
 	@Transactional
@@ -41,7 +44,12 @@ public class UserServiceImpl implements UserService{
 	
 	@Override
 	public boolean validPassword(User user, String password) {
-		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		return passwordEncoder.matches(password, user.getPassword());
+	}
+
+	@Override
+	@Transactional
+	public void addUser(User user) {
+		userDAO.addUser(user);
 	}
 }

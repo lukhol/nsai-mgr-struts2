@@ -24,17 +24,9 @@ public class User {
 	@Column(nullable=false)
 	private boolean activated;
 	
-	@Column(nullable=false)
+	@Column(nullable=false, unique=true)
 	private String username;
-		
-	public boolean isActivated() {
-		return activated;
-	}
-
-	public void setActivated(boolean activated) {
-		this.activated = activated;
-	}
-
+	
 	@Column(nullable=false)
 	private String password;
 	
@@ -47,6 +39,14 @@ public class User {
 	
 	@Version
 	private int optimisticLock;
+	
+	public boolean isActivated() {
+		return activated;
+	}
+
+	public void setActivated(boolean activated) {
+		this.activated = activated;
+	}
 	
 	public Long getUserId() {
 		return userId;
@@ -103,7 +103,6 @@ public class User {
 	public void setLastname(String lastname) {
 		this.lastname = lastname;
 	}
-	
 	
 	@Override
 	public boolean equals(Object obj) {

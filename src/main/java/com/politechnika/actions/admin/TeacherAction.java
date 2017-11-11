@@ -11,7 +11,7 @@ import com.politechnika.models.RoleName;
 import com.politechnika.models.User;
 import com.politechnika.services.TeacherService;
 
-@Role(roleNames= {RoleName.STUDENT})
+@Role(roleNames= {RoleName.ADMIN})
 public class TeacherAction extends UserAwareAction {
 
 	private static final long serialVersionUID = 9064077612311435927L;
