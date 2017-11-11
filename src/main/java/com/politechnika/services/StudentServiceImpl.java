@@ -1,5 +1,7 @@
 package com.politechnika.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -7,8 +9,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.politechnika.dao.UserDAO;
 import com.politechnika.models.Activator;
+import com.politechnika.models.Note;
 import com.politechnika.models.User;
 import com.politechnika.models.RoleName;
+import com.politechnika.models.Subject;
 
 @Service
 public class StudentServiceImpl implements StudentService {
@@ -63,5 +67,11 @@ public class StudentServiceImpl implements StudentService {
 	@Transactional
 	public void removeActivator(Activator activator) {
 		userDAO.removeActivator(activator);
+	}
+
+	@Override
+	public List<Note> getAllNotes(User student, Subject subject) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

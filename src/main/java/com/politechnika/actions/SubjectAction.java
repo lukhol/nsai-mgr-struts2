@@ -32,7 +32,7 @@ public class SubjectAction extends UserAwareAction {
 	
 	public String list() throws Exception {
 		
-		subjects = subjectService.findAll(getUser().getUserId());
+		subjects = subjectService.findAll(getUser());
 		return INPUT;
 	}
 	

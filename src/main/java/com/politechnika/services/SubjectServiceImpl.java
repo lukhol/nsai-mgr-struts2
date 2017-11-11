@@ -2,17 +2,22 @@ package com.politechnika.services;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.politechnika.dao.SubjectDAO;
 import com.politechnika.models.Subject;
+import com.politechnika.models.User;
 
 @Service
 public class SubjectServiceImpl implements SubjectService {
 
+	@Autowired
+	private SubjectDAO subjectDAO;
+	
 	@Override
-	public List<Subject> findAll(Long teacherId) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Subject> findAll(User teacher) {
+		return subjectDAO.findAllByTeacher(teacher);
 	}
 
 }
