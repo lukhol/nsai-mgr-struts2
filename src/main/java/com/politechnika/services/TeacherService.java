@@ -12,4 +12,8 @@ public interface TeacherService {
 
 	void delete(Long teacher);
 
+	User find(Long teacherId);
+
+	void edit(User teacher);
+
 }

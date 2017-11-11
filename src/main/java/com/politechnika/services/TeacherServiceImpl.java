@@ -29,4 +29,15 @@ public class TeacherServiceImpl implements TeacherService {
 		teacherDAO.delete(teacher);
 	}
 
+	@Override
+	public User find(Long teacherId) {
+		return teacherDAO.find(teacherId);
+	}
+	
+	@Override
+	public void edit(User teacher) {
+		teacherDAO.edit(teacher);
+	}
+
+
 }

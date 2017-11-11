@@ -46,7 +46,14 @@ public class TeacherAction extends UserAwareAction {
 	}
 	
 	public String edit() throws Exception {
+		teacher = teacherService.find(teacherId);
 		return INPUT;
+	}
+	
+	public String editComplete() throws Exception {
+		teacherService.edit(teacher);
+		addActionMessage(getText("label.success"));
+		return list();
 	}
 	
 	/* GETTERS and SETTERS */

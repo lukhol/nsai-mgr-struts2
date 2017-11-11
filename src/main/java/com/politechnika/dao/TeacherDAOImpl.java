@@ -41,4 +41,25 @@ public class TeacherDAOImpl implements TeacherDAO {
 		sessionFactory.getCurrentSession().createQuery("delete from User where userId=?").setParameter(0, teacherId).executeUpdate();
 	}
 
+	@Override
+	public User find(Long teacherId) {
+		List<User> users = sessionFactory.getCurrentSession().createQuery("from User where userId=?").setParameter(0, teacherId).list();
+
+		if (users.size() > 0) {
+			return users.get(0);
+		} else {
+			return null;
+		}
+	}
+
+	@Override
+	public void edit(User teacher) {
+		User oldTeacher = find(teacher.getUserId());
+		oldTeacher.setEmail(teacher.getEmail());
+		oldTeacher.setFirstname(teacher.getFirstname());
+		oldTeacher.setLastname(teacher.getLastname());
+		oldTeacher.setUsername(teacher.getUsername());
+		sessionFactory.getCurrentSession().save(oldTeacher);
+	}
+
 }

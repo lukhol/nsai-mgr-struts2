@@ -23,7 +23,7 @@
        return true;
    };
 </script>
-
+<h4><s:actionmessage/></h4>
 <h1><s:text name="teacher.list" />:</h1>
 	<table>
 		<thead>
