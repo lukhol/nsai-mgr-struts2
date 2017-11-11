@@ -27,7 +27,7 @@
 <h1><s:text name="teacher.list" />:</h1>
 	<table>
 		<thead>
-    		<tr>
+    		<tr style="background: #6fdbe4;">
       			<th><s:text name="label.teacher.firstname" /></th>
       			<th><s:text name="label.teacher.lastname" /></th>
 	  			<th><s:text name="label.teacher.username" /></th>
@@ -39,7 +39,7 @@
   		</thead>
   		<tbody>
   			<s:form theme="simple" id="teachersAdd" action="saveTeacher" namespace="/">
-	  			<tr>
+	  			<tr">
 	  				<td><s:textfield name="teacher.firstname"/></td>
 	  				<td><s:textfield name="teacher.lastname"/></td>
 	  				<td><s:textfield name="teacher.username"/></td>
@@ -51,15 +51,15 @@
   			</s:form>
   			<s:form theme="simple" id="teachersListId" name="teachersList" namespace="/">
   				<s:hidden name="teacherId" id="teacherIdField"/>
-	  			<s:iterator value="teachers" var="tempTeacher">
+	  			<s:iterator value="teachers" var="tempTeacher" status="incr">
 	  				<tr> 
 	  					<td><s:property value="#tempTeacher.firstname" /></td>
 	  					<td><s:property value="#tempTeacher.lastname" /></td>
 	  					<td><s:property value="#tempTeacher.username" /></td>
 	  					<td>*******</td>
 	  					<td><s:property value="#tempTeacher.email" /></td>
-	  					<td><s:submit action="editTeacher"  namespace="/" cssClass="ButtonSmall" value="edit" onclick="return setEditTeacher('%{#tempTeacher.userId}')"/></td>
-	  					<td><s:submit action="deleteTeacher"  namespace="/" cssClass="ButtonSmall" value="delete" onclick="return setRemoveTeacher('%{#tempTeacher.userId}')"/></td>
+	  					<td><s:submit action="editTeacher"  namespace="/" cssClass="ButtonSmall" key="form.edit" onclick="return setEditTeacher('%{#tempTeacher.userId}')"/></td>
+	  					<td><s:submit action="deleteTeacher"  namespace="/" cssClass="ButtonSmall" key="form.delete" onclick="return setRemoveTeacher('%{#tempTeacher.userId}')"/></td>
 	  				</tr>
 	 			</s:iterator>
  			</s:form>

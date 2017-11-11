@@ -7,6 +7,10 @@ body {
     margin: 0;
 }
 
+tr:nth-child(odd){
+  background-color: #e1fcff;
+}
+
 #app-body {
 	background: #4fbbe0;
 	width: 100%;
