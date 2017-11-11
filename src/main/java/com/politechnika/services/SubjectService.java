@@ -7,5 +7,5 @@ import com.politechnika.models.User;
 
 public interface SubjectService {
 
-	List<Subject> findAll(User teacher);
+	List<Subject> findAll(User user);
 }

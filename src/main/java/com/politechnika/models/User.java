@@ -26,7 +26,7 @@ public class User {
 	
 	@Column(nullable=false)
 	private String username;
-	
+		
 	public boolean isActivated() {
 		return activated;
 	}
@@ -102,5 +102,11 @@ public class User {
 
 	public void setLastname(String lastname) {
 		this.lastname = lastname;
+	}
+	
+	
+	@Override
+	public boolean equals(Object obj) {
+		return obj instanceof User ? this.userId.equals(((User) obj).userId) : false;
 	}
 }

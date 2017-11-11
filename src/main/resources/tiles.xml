@@ -30,8 +30,12 @@
 		<put-attribute name="body" value="/views/registration.jsp" />
 	</definition>
 
-	<definition name="SubjectsListDef" extends="baseLayout">
-		<put-attribute name="body" value="/views/subjectsList.jsp" />
+	<definition name="TeacherListDef" extends="baseLayout">
+		<put-attribute name="body" value="/views/teacher/teacherList.jsp" />
+	</definition>
+	
+	<definition name="TeacherModifyDef" extends="baseLayout">
+		<put-attribute name="body" value="/views/teacher/teacherModify.jsp" />
 	</definition>
 
 </tiles-definitions>
