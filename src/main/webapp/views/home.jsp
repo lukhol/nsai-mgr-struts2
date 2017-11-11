@@ -2,14 +2,15 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 
 <div>
-	Home page!
+	<h4><s:actionmessage/></h4>
+	<h1><s:text name="label.home" /></h1>
 	
 	<s:url action="inputLogin" namespace="/" var="loginTag"/>
 	<s:url action="formRegistration" namespace="/" var="registerTag" />
 	
 	<br>
-	<a href="<s:property value="#loginTag" />" >Sign in</a>
+	<a href="<s:property value="#loginTag" />" ><s:text name="label.login" /></a>
 	<br>
-	<a href="<s:property value="#registerTag" />" >Register</a>
+	<a href="<s:property value="#registerTag" />" ><s:text name="label.register" /></a>
 
 </div>

@@ -9,7 +9,7 @@
 		<s:password key="user.password"/>
 		<s:textfield key="user.email" type="email"/>
 	    <div class="g-recaptcha" data-sitekey="6LedvzcUAAAAAAmGg7uoftMqfP4M50UCNTg9ndTG"></div>
-	    <s:submit key="submit"/>
+	    <s:submit key="form.submit"/>
 
 	</s:form>
 </div>

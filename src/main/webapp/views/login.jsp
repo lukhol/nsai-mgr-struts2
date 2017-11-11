@@ -9,7 +9,7 @@
 		<s:fielderror fieldName="userNotActivated" />
 	    <s:textfield key="user.username" name="username"/>
 	    <s:password key="user.password" name="password"/>
-	    <s:submit key="submit"/>
+	    <s:submit key="form.submit"/>
 	</s:form>
 	<a href="<s:url action="formRegistration" namespace="/" />"><s:text name="label.registration" /></a>
 </div>
