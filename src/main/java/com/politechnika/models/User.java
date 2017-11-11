@@ -26,7 +26,7 @@ public class User {
 	
 	@Column(nullable=false)
 	private String username;
-	
+		
 	public boolean isActivated() {
 		return activated;
 	}

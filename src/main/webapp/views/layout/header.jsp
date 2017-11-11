@@ -18,6 +18,12 @@
 	<div id="home">
 		<span> <a href="<s:url action="home" namespace="/" />"> Home</a> </span>
 	</div>
+	
+	<div id="teachers">
+		<s:url action="listTeacher" namespace="/" var="TeacherTag"/>	
+		<br>
+		<a href="<s:property value="#TeacherTag" />" ><s:text name="label.teacher" /></a>
+	</div>
 </div>
 <div id="header">
 	NSAI - Struts2

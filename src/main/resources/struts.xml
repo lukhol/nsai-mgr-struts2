@@ -57,10 +57,10 @@
 			<result name="activationError" type="tiles">LoginDef</result>
 		</action>
 		
-		<!-- Registration action mapping -->
-		<action name="*Subject" class="com.politechnika.actions.SubjectAction" method="{1}">
-			<result name="input" type="tiles">SubjectsListDef</result>
-			<result name="success" type="tiles">SubjectsListDef</result>
+		<!-- Teacher action mapping -->
+		<action name="*Teacher" class="com.politechnika.actions.admin.TeacherAction" method="{1}">
+			<result name="success" type="tiles">TeacherListDef</result>
+			<result name="input" type="tiles">TeacherModifyDef</result>
 		</action>
 	</package>
 </struts>
