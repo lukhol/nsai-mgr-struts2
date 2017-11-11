@@ -17,6 +17,12 @@
 	
 	<div id="home">
 		<span> <a href="<s:url action="home" namespace="/" />"> Home</a> </span>
+		<s:if test="%{#session.USER != null}">
+			<span> <a href="<s:url action="logoutLogin" namespace="/" />"><s:text name="label.logout" /></a> </span>
+		</s:if>
+		<s:else>
+			<span> <a href="<s:url action="inputLogin" namespace="/" />"><s:text name="label.login" /></a> </span>
+		</s:else>
 	</div>
 </div>
 <div id="header">

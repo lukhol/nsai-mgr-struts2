@@ -4,10 +4,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.log4j.Logger;
 import org.apache.struts2.interceptor.ServletRequestAware;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionSupport;
 import com.politechnika.models.User;
@@ -17,6 +16,8 @@ public class LoginAction extends ActionSupport implements ServletRequestAware {
 	private static final String USER = "USER";
 	private static final long serialVersionUID = 2047477076086738030L;
 
+	private static final Logger logger = Logger.getLogger(LoginAction.class);
+	
 	private String username;
 	private String password;
 	
@@ -25,14 +26,19 @@ public class LoginAction extends ActionSupport implements ServletRequestAware {
 	
 	private HttpServletRequest request;
 	
-	public String form() throws Exception {
+	public String input() throws Exception {
+		if(request.getSession().getAttribute(USER) != null) {
+			logger.info("Login action - user is logged in. Home page will display.");
+			return "home";
+		}
+		
 		return INPUT;
 	}
 
 	public String login() throws Exception {
 		
-		if(request.getSession().getAttribute(USER) != null)
-			return "home";
+		if(!myValidate())
+			return Action.LOGIN;
 		
 		User user = userService.findByUsername(this.username);
 		
@@ -53,7 +59,6 @@ public class LoginAction extends ActionSupport implements ServletRequestAware {
 	}
 	
 	public String logout() throws Exception {
-		
 		HttpSession session = request.getSession();
 		
 		User user = (User)session.getAttribute(USER);
@@ -65,13 +70,18 @@ public class LoginAction extends ActionSupport implements ServletRequestAware {
 		return Action.LOGIN;
 	}
 	
-	public void validate(){
+	private boolean myValidate(){
+		boolean validateResult = true;
 		if(StringUtils.isEmpty(username)){
 			addFieldError("username", getText("validation.field.required"));
+			validateResult = false;
 		}
 		if(StringUtils.isEmpty(password)){
 			addFieldError("password", getText("validation.field.required"));
+			validateResult = false;
 		}
+		
+		return validateResult;
 	}
 	
 	public String getUsername() {

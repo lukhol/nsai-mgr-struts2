@@ -45,7 +45,7 @@
 		
 		<!--Localization action -->
 		<action name="Locale" class="com.politechnika.actions.LocaleAction" method="execute">
-			<result name="success" type="tiles">LoginDef</result>
+			<result name="success" type="tiles">HomeDef</result>
 		</action>
 		
 		<!-- Registration action mapping -->

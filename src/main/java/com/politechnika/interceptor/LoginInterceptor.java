@@ -4,6 +4,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.struts2.ServletActionContext;
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionInvocation;
+import com.opensymphony.xwork2.ActionProxy;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.interceptor.AbstractInterceptor;
 import com.politechnika.actions.HomeAction;
@@ -38,7 +39,7 @@ public class LoginInterceptor extends AbstractInterceptor {
 		// validates all actions except LoginAction and RegisterAction
 		boolean validateAction = !(action instanceof LoginAction || action instanceof RegistrationAction
 				|| action instanceof LocaleAction || action instanceof HomeAction);
-
+		
 		User user = (User) sessionAttributes.getAttribute(USER);
 		
 		// check if session has expired		
@@ -49,7 +50,6 @@ public class LoginInterceptor extends AbstractInterceptor {
 			return Action.LOGIN;
 		}
 
-		//
 		if(action instanceof UserAwareAction) {
 			((UserAwareAction) action).setUser(user);
 		}
