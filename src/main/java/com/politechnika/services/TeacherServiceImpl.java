@@ -25,7 +25,7 @@ public class TeacherServiceImpl implements TeacherService {
 	}
 
 	@Override
-	public void delete(User teacher) {
+	public void delete(Long teacher) {
 		teacherDAO.delete(teacher);
 	}
 

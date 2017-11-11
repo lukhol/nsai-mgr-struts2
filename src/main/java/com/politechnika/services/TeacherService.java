@@ -10,6 +10,6 @@ public interface TeacherService {
 
 	void save(User teacher);
 
-	void delete(User teacher);
+	void delete(Long teacher);
 
 }

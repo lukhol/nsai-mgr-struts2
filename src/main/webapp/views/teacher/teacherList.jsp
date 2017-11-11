@@ -10,14 +10,14 @@
 <script>
   function setEditTeacher(val)
    {    
-       document.getElementById("teacherField").value=val;
+       document.getElementById("teacherIdField").value=val;
        document.teachersList.action="editTeacher.action";
        document.teachersList.submit();
        return true;
    };
    function setRemoveTeacher(val)
    {    
-       document.getElementById("teacherField").value=val;
+       document.getElementById("teacherIdField").value=val;
        document.teachersList.action="deleteTeacher.action";
        document.teachersList.submit();
        return true;
@@ -28,29 +28,29 @@
 	<table>
 		<thead>
     		<tr>
-      			<th><s:text name="teacher.firstname" /></th>
-      			<th><s:text name="teacher.lastname" /></th>
-	  			<th><s:text name="teacher.username" /></th>
-	  			<th><s:text name="teacher.password" /></th>
-	  			<th><s:text name="teacher.email" /></th>
+      			<th><s:text name="label.teacher.firstname" /></th>
+      			<th><s:text name="label.teacher.lastname" /></th>
+	  			<th><s:text name="label.teacher.username" /></th>
+	  			<th><s:text name="label.teacher.password" /></th>
+	  			<th><s:text name="label.teacher.email" /></th>
 	  			<th></th>
 	  			<th></th>
     		</tr>
   		</thead>
   		<tbody>
-  			<s:form id="teachersAdd" action="addTeacher" namespace="/">
+  			<s:form theme="simple" id="teachersAdd" action="saveTeacher" namespace="/">
 	  			<tr>
 	  				<td><s:textfield name="teacher.firstname"/></td>
 	  				<td><s:textfield name="teacher.lastname"/></td>
 	  				<td><s:textfield name="teacher.username"/></td>
-	  				<td><s:textfield name="teacher.password"/></td>
+	  				<td><s:password name="teacher.password"/></td>
 	  				<td><s:textfield name="teacher.email"/></td>
-	  				<td><s:submit key="form.submit"/></td>
+	  				<td><s:submit key="form.add"/></td>
 	  				<td></td>
 	  			</tr>
   			</s:form>
-  			<s:form id="teachersList" name="teachersList">
-  				<s:hidden name="teacher" id="teacherField"/>
+  			<s:form theme="simple" id="teachersListId" name="teachersList" namespace="/">
+  				<s:hidden name="teacherId" id="teacherIdField"/>
 	  			<s:iterator value="teachers" var="tempTeacher">
 	  				<tr> 
 	  					<td><s:property value="#tempTeacher.firstname" /></td>
@@ -58,8 +58,8 @@
 	  					<td><s:property value="#tempTeacher.username" /></td>
 	  					<td>*******</td>
 	  					<td><s:property value="#tempTeacher.email" /></td>
-	  					<td><s:submit action="editTeacher" cssClass="ButtonSmall" value="edit" onclick="return setEditTeacher('%{#tempTeacher}')"/></td>
-	  					<td><s:submit action="deleteTeacher" cssClass="ButtonSmall" value="delete" onclick="return setRemoveTeacher('%{#tempTeacher}')"/></td>
+	  					<td><s:submit action="editTeacher"  namespace="/" cssClass="ButtonSmall" value="edit" onclick="return setEditTeacher('%{#tempTeacher.userId}')"/></td>
+	  					<td><s:submit action="deleteTeacher"  namespace="/" cssClass="ButtonSmall" value="delete" onclick="return setRemoveTeacher('%{#tempTeacher.userId}')"/></td>
 	  				</tr>
 	 			</s:iterator>
  			</s:form>

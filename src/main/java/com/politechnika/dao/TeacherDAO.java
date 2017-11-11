@@ -10,6 +10,6 @@ public interface TeacherDAO {
 
 	void save(User newTeacher);
 
-	void delete(User teacher);
+	void delete(Long teacher);
 
 }

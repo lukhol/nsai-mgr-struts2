@@ -36,8 +36,8 @@ public class TeacherDAOImpl implements TeacherDAO {
 	}
 
 	@Override
-	public void delete(User teacher) {
-		sessionFactory.getCurrentSession().delete(teacher);
+	public void delete(Long teacher) {
+		sessionFactory.getCurrentSession().createQuery("delete from User where userId=?").setParameter(0, teacher).executeUpdate();
 	}
 
 }

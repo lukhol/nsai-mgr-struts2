@@ -3,6 +3,7 @@ package com.politechnika.actions.admin;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.politechnika.actions.UserAwareAction;
 import com.politechnika.interceptor.Role;
@@ -17,6 +18,8 @@ public class TeacherAction extends UserAwareAction {
 
 	private User teacher;
 	
+	private Long teacherId;
+	
 	private List<User> teachers;
 	
 	@Autowired
@@ -28,13 +31,18 @@ public class TeacherAction extends UserAwareAction {
 	}
 	
 	public String save() throws Exception { 
+		teacher.setUserRole(RoleName.TEACHER);
+		teacher.setActivated(true);
+		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		teacher.setPassword(passwordEncoder.encode(teacher.getPassword()));
 		teacherService.save(teacher);
-		return SUCCESS;
+		addActionMessage(getText("label.success"));
+		return list();
 	}
 	
 	public String delete() throws Exception {
-		teacherService.delete(teacher);
-		return SUCCESS;
+		teacherService.delete(teacherId);
+		return list();
 	}
 	
 	public String edit() throws Exception {
@@ -57,4 +65,14 @@ public class TeacherAction extends UserAwareAction {
 	public void setTeachers(List<User> teachers) {
 		this.teachers = teachers;
 	}
+
+	public Long getTeacherId() {
+		return teacherId;
+	}
+
+	public void setTeacherId(Long teacherId) {
+		this.teacherId = teacherId;
+	}
+	
+	
 }
