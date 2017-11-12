@@ -1,29 +1,29 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 	
-<style>
-	.errorMessage {
-		color: #d80000;
-	}
-</style>
+<link rel="stylesheet" type="text/css" href="views/teacherSubject/teacherSubject.css">
 
-<s:if test="subject.subjectId == 0">
-	<s:form action="addTeacherSubject" namespace="/">
-		<s:textfield key="subject.name" />
-		<s:textarea key="subject.description" />
+<div id="addEditFormDiv">
+	<s:if test="subject.subjectId == 0">
+		<h2><s:text name="label.addSubject"/></h2>
+		<s:form action="addTeacherSubject" namespace="/">
 		
-		<s:hidden name="subject.subjectId" />
-		
-		<s:submit key="submit" name="submit" />
-	</s:form>
-</s:if>
-<s:else>
-	<s:form action="editTeacherSubject" namespace="/">
-		<s:textfield key="subject.name" />
-		<s:textarea key="subject.description" />
-		
-		<s:hidden name="subject.subjectId" />
-		
-		<s:submit key="submit" name="submit" />
-	</s:form>
-</s:else>
+			<s:textfield class="subjectName" name="subject.name" placeholder="%{getText('subject.name')}"/>
+			<s:textarea class="subjectDescription" name="subject.description" placeholder="%{getText('subject.description')}"/>
+			
+			<s:hidden name="subject.subjectId" />
+			
+			<s:submit key="label.add" />
+		</s:form>
+	</s:if>
+	<s:else>
+		<h2><s:text name="label.editSubject"/></h2>
+		<s:form action="editTeacherSubject" namespace="/">
+			<s:textfield class="subjectName" name="subject.name" placeholder="%{getText('subject.name')}"/>
+			<s:textarea class="subjectDescription" name="subject.description" placeholder="%{getText('subject.description')}"/>
+			
+			<s:hidden name="subject.subjectId" />
+			<s:submit key="label.edit" />
+		</s:form>
+	</s:else>
+</div>
