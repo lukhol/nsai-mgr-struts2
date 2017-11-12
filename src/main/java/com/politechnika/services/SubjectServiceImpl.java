@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.politechnika.dao.SubjectDAO;
 import com.politechnika.models.RoleName;
@@ -17,6 +18,7 @@ public class SubjectServiceImpl implements SubjectService {
 	private SubjectDAO subjectDAO;
 	
 	@Override
+	@Transactional
 	public List<Subject> findAll(User user) {
 		if(user.getUserRole().equals(RoleName.TEACHER)) {
 			return subjectDAO.findAllByTeacher(user);
@@ -25,4 +27,27 @@ public class SubjectServiceImpl implements SubjectService {
 		}
 	}
 
+	@Override
+	@Transactional
+	public boolean addSubject(Subject subject) {
+		return subjectDAO.create(subject);
+	}
+
+	@Override
+	@Transactional
+	public boolean updateSubject(Subject subject) {
+		return subjectDAO.updateSuject(subject);
+	}
+
+	@Override
+	@Transactional
+	public boolean removeSubject(Subject subject) {
+		return subjectDAO.removeSubject(subject);
+	}
+
+	@Override
+	@Transactional
+	public Subject getSubject(long subjectId) {
+		return subjectDAO.getSubject(subjectId);
+	}
 }

@@ -16,8 +16,13 @@ public class SubjectDAOImpl implements SubjectDAO {
 	SessionFactory sessionFactory;
 	
 	@Override
-	public void create(Subject subject) {
-		sessionFactory.getCurrentSession().save(subject);
+	public boolean create(Subject subject) {
+		try {
+			sessionFactory.getCurrentSession().save(subject);
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
 	}
 
 	@Override
@@ -26,4 +31,28 @@ public class SubjectDAOImpl implements SubjectDAO {
 		return sessionFactory.getCurrentSession().createQuery("from Subject where teacher=?").setParameter(0, teacher).list();
 	}
 
+	@Override
+	public boolean updateSuject(Subject subject) {
+		try {
+			sessionFactory.getCurrentSession().merge(subject);
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+	}
+
+	@Override
+	public boolean removeSubject(Subject subject) {
+		try {
+			sessionFactory.getCurrentSession().delete(subject);
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+	}
+
+	@Override
+	public Subject getSubject(long subjectId) {
+		return (Subject)sessionFactory.getCurrentSession().get(Subject.class, subjectId);
+	}
 }

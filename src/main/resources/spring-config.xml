@@ -31,11 +31,6 @@
         <property name="dataSource" ref="dataSource" />
         <property name="configLocation" value="classpath:hibernate.cfg.xml" />
         <property name="packagesToScan" value="com.politechnika.models" />
-        <property name="hibernateProperties">
-         <props>
-            <prop key="hibernate.hbm2ddl.auto">create</prop>
-         </props>
-      </property>
     </bean>
 
     <!-- Transaction manager -->

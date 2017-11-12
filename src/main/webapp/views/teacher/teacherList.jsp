@@ -1,11 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
-<html>
-<head>
-	 <script src="views/js/foundation.min.js"></script>
-	 <link rel="stylesheet" type="text/css" href="views/css/foundation.min.css">
-</head>
-<body>
+<script src="views/js/foundation.min.js"></script>
+<link rel="stylesheet" type="text/css" href="views/css/foundation.min.css">
 
 <script>
   function setEditTeacher(val)
@@ -39,7 +35,7 @@
   		</thead>
   		<tbody>
   			<s:form theme="simple" id="teachersAdd" action="saveTeacher" namespace="/">
-	  			<tr">
+	  			<tr>
 	  				<td><s:textfield name="teacher.firstname"/></td>
 	  				<td><s:textfield name="teacher.lastname"/></td>
 	  				<td><s:textfield name="teacher.username"/></td>
@@ -65,5 +61,3 @@
  			</s:form>
   		</tbody>
   	</table>
-  </body>
-  </html>

@@ -43,6 +43,8 @@ public class InitialServletContextListener implements ServletContextListener {
 		addUser(RoleName.ADMIN, "nsai.activatorsender@gmail.com", "admin", "admin");
 		addUser(RoleName.TEACHER, "nsai.activatorsender2@gmail.com", "teacher", "teacher");
 		addUser(RoleName.STUDENT, "nsai.activatorsender3@gmail.com", "student", "student");
+		
+		System.out.println(RoleName.ADMIN.toString());
 	}
 	
 	private void addUser(RoleName roleName, String email, String username, String password) {
@@ -51,6 +53,8 @@ public class InitialServletContextListener implements ServletContextListener {
 			user.setActivated(true);
 			user.setUserRole(roleName);
 			user.setEmail(email);
+			user.setFirstname(username + "Fristname");
+			user.setLastname(username + "Lastname");
 			user.setUsername(username);
 			user.setPassword(passwordEncoder.encode(password));
 			userService.addUser(user);

@@ -15,8 +15,11 @@
 		<span> <s:a href="%{loginPL}">Polski</s:a></span>
 	</div>
 	
-	<div id="home">
+	<div class="headerLeftItem">
 		<span> <a href="<s:url action="home" namespace="/" />"> Home</a> </span>
+	</div>
+	
+	<div class="headerLeftItem">
 		<s:if test="%{#session.USER != null}">
 			<span> <a href="<s:url action="logoutLogin" namespace="/" />"><s:text name="label.logout" /></a> </span>
 		</s:if>
@@ -24,17 +27,23 @@
 			<span> <a href="<s:url action="inputLogin" namespace="/" />"><s:text name="label.login" /></a> </span>
 		</s:else>
 	</div>
-	
-	<div id="teachers">
-		<s:url action="listTeacher" namespace="/" var="TeacherTag"/>	
-		<br>
-		<a href="<s:property value="#TeacherTag" />" ><s:text name="label.teacher" /></a>
-	</div>
+	<s:if test="%{#session.USER != null && #session.USER.userRole.toString() == 'ADMIN'}">
+		<div class="headerLeftItem">
+			<s:url action="listTeacher" namespace="/" var="TeacherTag"/>	
+			<a href="<s:property value="#TeacherTag" />" ><s:text name="label.teacher" /></a>
+		</div>
+	</s:if>
+	<s:if test="%{#session.USER != null && #session.USER.userRole.toString() == 'TEACHER'}">
+		<div class="headerLeftItem">
+			<s:url action="listTeacherSubject" namespace="/" var="TeacherSubjectTag"/>	
+			<a href="<s:property value="#TeacherSubjectTag" />" ><s:text name="label.subjects"/></a>
+		</div>
+	</s:if>
 </div>
+<div style="clear: both;"></div>
 <div id="header">
 	NSAI - Struts2
 </div>
 
 
-<div style="clear: both;"></div>
 

@@ -21,8 +21,11 @@ public class Subject {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long subjectId;
 	
-	@Column(nullable= false)
+	@Column(nullable = false)
 	private String name;
+	
+	@Column(nullable = false)
+	private String description;
 	
 	@ManyToMany
 	@JoinTable(
@@ -65,5 +68,13 @@ public class Subject {
 
 	public void setTeacher(User teacher) {
 		this.teacher = teacher;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 }

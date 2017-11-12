@@ -37,5 +37,13 @@
 	<definition name="TeacherModifyDef" extends="baseLayout">
 		<put-attribute name="body" value="/views/teacher/teacherModify.jsp" />
 	</definition>
+	
+	<definition name="TeacherSubjectListDef" extends="baseLayout">
+		<put-attribute name="body" value="/views/teacherSubject/subjectList.jsp" />
+	</definition>
+	
+	<definition name="TeacherSubjectChangeDef" extends="baseLayout">
+		<put-attribute name="body" value="/views/teacherSubject/addEditSubject.jsp" />
+	</definition>
 
 </tiles-definitions>

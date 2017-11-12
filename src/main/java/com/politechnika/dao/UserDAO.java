@@ -17,5 +17,4 @@ public interface UserDAO {
 	public Activator getActivatorByCode(String code);
 	public void removeActivator(Activator activator);
 	public void addActivator(Activator activator);
-	
 }

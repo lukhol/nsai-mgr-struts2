@@ -7,6 +7,9 @@ import com.politechnika.models.User;
 
 public interface SubjectDAO {
 	
-	void create(Subject subject);
+	boolean create(Subject subject);
 	List<Subject> findAllByTeacher(User teacher);
+	boolean updateSuject(Subject subject);
+	boolean removeSubject(Subject subject);
+	Subject getSubject(long subjectId);
 }
