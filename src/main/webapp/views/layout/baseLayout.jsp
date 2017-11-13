@@ -13,6 +13,9 @@
 			<tiles:insertAttribute name="header" />
 		</div>
 		<div style="clear:both"></div>
+		<div id="app-menu">
+			<tiles:insertAttribute name="menu" />
+		</div>
 
 		<div id="app-body">
 			<tiles:insertAttribute name="body" />

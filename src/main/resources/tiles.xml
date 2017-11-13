@@ -6,6 +6,7 @@
 <tiles-definitions>
 	<definition name="baseLayout" template="/views/layout/baseLayout.jsp">
 		<put-attribute name="header" value="/views/layout/header.jsp" />
+		<put-attribute name="menu" value="/views/layout/menu.jsp" />
 		<put-attribute name="body" value="" />
 		<put-attribute name="footer" value="/views/layout/footer.jsp" />
 	</definition>
