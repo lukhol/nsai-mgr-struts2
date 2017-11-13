@@ -68,5 +68,10 @@
 			<result name="success" type="tiles">TeacherSubjectListDef</result>
 			<result name="input" type="tiles">TeacherSubjectChangeDef</result>
 		</action>
+		
+		<!-- StudentSubjectAction -->
+		<action name="*StudentSubject" class="com.politechnika.actions.student.StudentSubjectAction" method="{1}">
+			<result name="success" type="tiles"></result>
+		</action>
 	</package>
 </struts>

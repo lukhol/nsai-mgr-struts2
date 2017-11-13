@@ -42,6 +42,7 @@ public class TeacherDAOImpl implements TeacherDAO {
 	}
 
 	@Override
+	@SuppressWarnings("unchecked")
 	public User find(Long teacherId) {
 		List<User> users = sessionFactory.getCurrentSession().createQuery("from User where userId=?").setParameter(0, teacherId).list();
 
