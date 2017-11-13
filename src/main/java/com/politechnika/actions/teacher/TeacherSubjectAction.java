@@ -66,8 +66,10 @@ public class TeacherSubjectAction extends UserAwareAction {
 	}
 	
 	public String add() throws Exception {
-		if(!validateSubject())
+		if(!validateSubject()) {
+			subject.setSubjectId(0l);
 			return INPUT;
+		}
 		
 		User teacher = this.getUser();
 		

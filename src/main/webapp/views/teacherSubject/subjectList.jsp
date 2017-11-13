@@ -45,6 +45,7 @@
 		
 			<s:textfield id="subjectNameId" class="subjectName" name="subject.name" placeholder="%{getText('subject.name')}"/>
 			<s:textarea id="subjectDescriptionId" class="subjectDescription" name="subject.description" placeholder="%{getText('subject.description')}"/>
+			<s:hidden name="subject.subjectId" />
 			<s:submit key="label.add" />
 		</s:form>
     </div>

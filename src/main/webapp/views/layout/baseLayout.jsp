@@ -12,10 +12,13 @@
 		<div id="app-header">
 			<tiles:insertAttribute name="header" />
 		</div>
+		<div style="clear:both"></div>
 
 		<div id="app-body">
 			<tiles:insertAttribute name="body" />
+			<div style="clear:both"></div>
 		</div>
+		<div style="clear:both"></div>
 
 		<div id="app-footer">
 			<tiles:insertAttribute name="footer" />
