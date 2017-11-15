@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 	
-<link rel="stylesheet" type="text/css" href="views/teacherSubject/teacherSubject.css">
+<link rel="stylesheet" type="text/css" href="views/layout/subject.css">
 
 <div id="addEditFormDiv">
 	<s:if test="subject.subjectId == 0">

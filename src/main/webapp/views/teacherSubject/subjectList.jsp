@@ -3,7 +3,7 @@
 
 <meta http-equiv="Cache-control" content="no-cache">
 
-<link rel="stylesheet" type="text/css" href="views/teacherSubject/teacherSubject.css">
+<link rel="stylesheet" type="text/css" href="views/layout/subject.css">
 <script src="views/teacherSubject/teacherSubject.js"></script>
 
 <div id="subjectsListBox">
@@ -28,7 +28,7 @@
 		</s:iterator>
 	</ol>
 	<div style="background-color: #5cb85c; width: 100%; height=50px;">
-		<button id="myBtn"><s:text name="form.add"/></button>
+		<button id="myBtn" class="buttonStyle"><s:text name="form.add"/></button>
 	</div>
 </div>
 

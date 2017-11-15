@@ -65,6 +65,13 @@
 			</li>
 		</s:if>
 		
+		<s:if test="%{#session.USER != null && #session.USER.userRole.toString() == 'STUDENT'}">
+			<li>
+				<s:url action="listAllStudentSubject" namespace="/" var="StudentSubjectTag"/>	
+				<a href="<s:property value="StudentSubjectTag" />" ><s:text name="label.subjects"/></a>
+			</li>
+		</s:if>
+		
 		<li>
 			<a href="<s:url action="formRegistration" namespace="/" />"><s:text name="label.registration" /></a>
 		</li>

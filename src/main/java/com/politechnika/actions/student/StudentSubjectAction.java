@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.politechnika.actions.UserAwareAction;
 import com.politechnika.interceptor.Role;
-import com.politechnika.models.Post;
 import com.politechnika.models.RoleName;
 import com.politechnika.models.Subject;
 import com.politechnika.services.SubjectService;
@@ -19,6 +18,7 @@ public class StudentSubjectAction extends UserAwareAction{
 	@Autowired
 	SubjectService subjectService;
 	
+	private Subject subject;
 	private List<Subject> savedStudentSubject;
 	private List<Subject> allSubjects;
 	
@@ -27,6 +27,11 @@ public class StudentSubjectAction extends UserAwareAction{
 		return SUCCESS;
 	}
 
+	public String subjectDetails() throws Exception {
+		subject = subjectService.getSubject(subject.getSubjectId());
+		return "subjectDetails";
+	}
+	
 	/* Getters and Setters: */
 	public List<Subject> getSavedStudentSubject() {
 		return savedStudentSubject;
@@ -42,5 +47,13 @@ public class StudentSubjectAction extends UserAwareAction{
 
 	public void setAllSubjects(List<Subject> allSubjects) {
 		this.allSubjects = allSubjects;
+	}
+
+	public Subject getSubject() {
+		return subject;
+	}
+
+	public void setSubject(Subject subject) {
+		this.subject = subject;
 	}
 }
