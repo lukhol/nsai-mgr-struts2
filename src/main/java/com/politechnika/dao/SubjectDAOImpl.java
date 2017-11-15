@@ -55,4 +55,10 @@ public class SubjectDAOImpl implements SubjectDAO {
 	public Subject getSubject(long subjectId) {
 		return (Subject)sessionFactory.getCurrentSession().get(Subject.class, subjectId);
 	}
+
+	@Override
+	@SuppressWarnings("unchecked")
+	public List<Subject> getAllSubjects() {
+		return sessionFactory.getCurrentSession().createQuery("from Subject order by subjectId").list();
+	}
 }

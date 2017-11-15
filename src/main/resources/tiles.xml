@@ -46,5 +46,9 @@
 	<definition name="TeacherSubjectChangeDef" extends="baseLayout">
 		<put-attribute name="body" value="/views/teacherSubject/addEditSubject.jsp" />
 	</definition>
-
+	
+	<definition name="StudentSubjectListDef" extends="baseLayout">
+		<put-attribute name="body" value="/views/studentSubject/subjectList.jsp" />
+	</definition>
+	
 </tiles-definitions>

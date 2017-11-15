@@ -25,7 +25,7 @@ public class TeacherSubjectAction extends UserAwareAction {
 	private long subjectToEditId;
 	
 	public String list() throws Exception {
-		subjects = subjectService.findAll(this.getUser());
+		subjects = subjectService.findAllByTeacher(this.getUser());
 		return SUCCESS;
 	}
 	
@@ -36,7 +36,7 @@ public class TeacherSubjectAction extends UserAwareAction {
 		}
 		
 		if(subject.getSubjectId() != 0) {
-			subjects = subjectService.findAll(this.getUser());
+			subjects = subjectService.findAllByTeacher(this.getUser());
 			subject = subjects
 							.stream()
 							.filter(s -> s.getSubjectId() == subject.getSubjectId())
@@ -49,7 +49,7 @@ public class TeacherSubjectAction extends UserAwareAction {
 	
 	public String delete() throws Exception {
 		if(subject.getSubjectId() != 0) {
-			subjects = subjectService.findAll(this.getUser());
+			subjects = subjectService.findAllByTeacher(this.getUser());
 			subject = subjects
 							.stream()
 							.filter(s -> s.getSubjectId() == subject.getSubjectId())
@@ -82,7 +82,7 @@ public class TeacherSubjectAction extends UserAwareAction {
 		if(!addingResult)
 			return INPUT;
 		
-		subjects = subjectService.findAll(teacher);
+		subjects = subjectService.findAllByTeacher(teacher);
 		
 		return SUCCESS;
 	}
@@ -106,7 +106,7 @@ public class TeacherSubjectAction extends UserAwareAction {
 		if(!updateResult)
 			return INPUT;
 
-		subjects = subjectService.findAll(teacher);
+		subjects = subjectService.findAllByTeacher(teacher);
 		
 		return SUCCESS;
 	}

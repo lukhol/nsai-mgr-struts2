@@ -1,9 +1,10 @@
 package com.politechnika.models;
 
+import java.util.ArrayList;
 import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -11,6 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -29,7 +31,7 @@ public class Subject {
 	
 	@ManyToMany
 	@JoinTable(
-		      name="stud_subj",
+		      name="STUD_SUBJ",
 		      joinColumns=@JoinColumn(name="subjectId", referencedColumnName="subjectId"),
 		      inverseJoinColumns=@JoinColumn(name="studentId", referencedColumnName="userId"))
 	private List<User> students;
@@ -37,6 +39,9 @@ public class Subject {
 	@ManyToOne
 	@JoinColumn(name="teacherId")
 	private User teacher;
+	
+	@OneToMany
+	private List<Post> posts;
 
 	public Long getSubjectId() {
 		return subjectId;
@@ -76,5 +81,13 @@ public class Subject {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public List<Post> getPosts() {
+		return posts;
+	}
+
+	public void setPosts(List<Post> posts) {
+		this.posts = posts;
 	}
 }

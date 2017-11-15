@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.politechnika.actions.UserAwareAction;
 import com.politechnika.interceptor.Role;
+import com.politechnika.models.Post;
 import com.politechnika.models.RoleName;
 import com.politechnika.models.Subject;
 import com.politechnika.services.SubjectService;
@@ -21,8 +22,8 @@ public class StudentSubjectAction extends UserAwareAction{
 	private List<Subject> savedStudentSubject;
 	private List<Subject> allSubjects;
 	
-	public String list() throws Exception {
-		
+	public String listAll() throws Exception {
+		allSubjects = subjectService.getAllSubjects();
 		return SUCCESS;
 	}
 

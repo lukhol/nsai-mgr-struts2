@@ -19,9 +19,9 @@ public class SubjectServiceImpl implements SubjectService {
 	
 	@Override
 	@Transactional
-	public List<Subject> findAll(User user) {
-		if(user.getUserRole().equals(RoleName.TEACHER)) {
-			return subjectDAO.findAllByTeacher(user);
+	public List<Subject> findAllByTeacher(User teacher) {
+		if(teacher.getUserRole().equals(RoleName.TEACHER)) {
+			return subjectDAO.findAllByTeacher(teacher);
 		} else {
 			return null;
 		}
@@ -49,5 +49,11 @@ public class SubjectServiceImpl implements SubjectService {
 	@Transactional
 	public Subject getSubject(long subjectId) {
 		return subjectDAO.getSubject(subjectId);
+	}
+
+	@Override
+	@Transactional
+	public List<Subject> getAllSubjects() {
+		return subjectDAO.getAllSubjects();
 	}
 }
