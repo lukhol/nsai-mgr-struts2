@@ -13,4 +13,5 @@ public interface SubjectService {
 	Subject getSubject(long subjectId);
 	List<Subject> findAllByTeacher(User user);
 	List<Subject> getAllSubjects();
+	List<Subject> getSubjectByStudent(User student);
 }

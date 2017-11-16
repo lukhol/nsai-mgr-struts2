@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 
-<link rel="stylesheet" type="text/css" href="views/layout/subject.css">
+<link rel="stylesheet" type="text/css" href="views/css/subject.css">
 
-<div id="subjectsListBox">
+<div class="subjectsListBox">
 	<div style="background-color: #5cb85c; width: 100%; height=50px; margin-top: 0px;">
 		<h2><s:property value="subject.name"/>:</h2>
 	</div>
@@ -11,6 +11,13 @@
 		<s:property value="subject.description"/>
 	</div>
 	<div style="background-color: #5cb85c; width: 100%; height=50px;">
-		<button class="buttonStyle"><s:text name="label.saveToSubject"/></button>
+		<s:url action="saveToSubjectStudentSubject" namespace="/" var = "SaveToSubjectTag">
+			<s:param name="subject.subjectId"><s:property value="subject.subjectId"/></s:param>
+		</s:url>
+		<a href="<s:property value="#SaveToSubjectTag" />">
+			<button class="buttonStyle">
+				<span><s:text name="label.saveToSubject"/></span>
+			</button>
+		</a>
 	</div>
 </div>

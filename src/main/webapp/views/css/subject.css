@@ -23,7 +23,7 @@ subject@charset "UTF-8";
 	padding: 5px 5px 5px 5px;
 }
 
-#subjectsListBox {
+.subjectsListBox {
 	width: 65%;
 	display: inline-block;
 	background-color: white;
@@ -39,6 +39,36 @@ subject@charset "UTF-8";
     padding: 14px 20px;
     border: none;
     cursor: pointer;
+    font-size: 25px;
+}
+
+.buttonStyle:hover {
+	background-color: #3BAE40;
+}
+
+.buttonStyle span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.buttonStyle span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.buttonStyle:hover span {
+  padding-right: 25px;
+}
+
+.buttonStyle:hover span:after {
+  opacity: 1;
+  right: 0;
 }
 
 h2 {

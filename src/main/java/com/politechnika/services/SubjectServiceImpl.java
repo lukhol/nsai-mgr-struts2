@@ -48,12 +48,19 @@ public class SubjectServiceImpl implements SubjectService {
 	@Override
 	@Transactional
 	public Subject getSubject(long subjectId) {
-		return subjectDAO.getSubject(subjectId);
+		Subject subject = subjectDAO.getSubject(subjectId);
+		return subject;
 	}
 
 	@Override
 	@Transactional
 	public List<Subject> getAllSubjects() {
 		return subjectDAO.getAllSubjects();
+	}
+
+	@Override
+	@Transactional
+	public List<Subject> getSubjectByStudent(User student) {
+		return subjectDAO.getSubjectByStudent(student);
 	}
 }

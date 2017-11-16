@@ -3,10 +3,10 @@
 
 <meta http-equiv="Cache-control" content="no-cache">
 
-<link rel="stylesheet" type="text/css" href="views/layout/subject.css">
+<link rel="stylesheet" type="text/css" href="views/css/subject.css">
 <script src="views/teacherSubject/teacherSubject.js"></script>
 
-<div id="subjectsListBox">
+<div class="subjectsListBox">
 	<div style="background-color: #5cb85c; width: 100%; height=50px; margin-top: 0px;">
 		<h2>Welcome <s:property value="user.firstname"/>. Your subjects:</h2> 
 	</div>

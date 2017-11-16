@@ -14,4 +14,5 @@ public interface SubjectDAO {
 	Subject getSubject(long subjectId);
 	List<Subject> findAllByTeacher(User teacher);
 	List<Subject> getAllSubjects();
+	List<Subject> getSubjectByStudent(User student);
 }

@@ -8,6 +8,7 @@ import com.politechnika.actions.UserAwareAction;
 import com.politechnika.interceptor.Role;
 import com.politechnika.models.RoleName;
 import com.politechnika.models.Subject;
+import com.politechnika.models.User;
 import com.politechnika.services.SubjectService;
 
 @Role(roleNames= {RoleName.STUDENT})
@@ -19,11 +20,12 @@ public class StudentSubjectAction extends UserAwareAction{
 	SubjectService subjectService;
 	
 	private Subject subject;
-	private List<Subject> savedStudentSubject;
+	private List<Subject> savedStudentSubjects;
 	private List<Subject> allSubjects;
 	
 	public String listAll() throws Exception {
 		allSubjects = subjectService.getAllSubjects();
+		savedStudentSubjects = subjectService.getSubjectByStudent(this.getUser());
 		return SUCCESS;
 	}
 
@@ -32,13 +34,34 @@ public class StudentSubjectAction extends UserAwareAction{
 		return "subjectDetails";
 	}
 	
+	public String saveToSubject() throws Exception {
+		subject = subjectService.getSubject(subject.getSubjectId());
+		
+		boolean contains = false;
+		for(User student : subject.getStudents()) {
+			if(student.getUserId() == this.getUser().getUserId()) {
+				contains = true;
+				break;
+			}
+		}
+		
+		if(!contains) {
+			subject.getStudents().add(this.getUser());
+			subjectService.updateSubject(subject);
+		}
+		
+		allSubjects = subjectService.getAllSubjects();
+		savedStudentSubjects = subjectService.getSubjectByStudent(this.getUser());
+		return SUCCESS;
+	}
+	
 	/* Getters and Setters: */
-	public List<Subject> getSavedStudentSubject() {
-		return savedStudentSubject;
+	public List<Subject> getSavedStudentSubjects() {
+		return savedStudentSubjects;
 	}
 
-	public void setSavedStudentSubject(List<Subject> savedStudentSubject) {
-		this.savedStudentSubject = savedStudentSubject;
+	public void setSavedStudentSubjects(List<Subject> savedStudentSubjects) {
+		this.savedStudentSubjects = savedStudentSubjects;
 	}
 
 	public List<Subject> getAllSubjects() {

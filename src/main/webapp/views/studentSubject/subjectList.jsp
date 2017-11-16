@@ -2,9 +2,29 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 
 <meta http-equiv="Cache-control" content="no-cache">
-<link rel="stylesheet" type="text/css" href="views/layout/subject.css">
+<link rel="stylesheet" type="text/css" href="views/css/subject.css">
 
-<div id="subjectsListBox">
+<div class="subjectsListBox">
+	<div style="background-color: #5cb85c; width: 100%; height=50px; margin-top: 0px;">
+		<h2>Twoje przedmioty:</h2>
+	</div>
+	<ol>
+		<s:iterator value="savedStudentSubjects">
+			<li>
+				<s:property value="name"/>
+			</li>
+		</s:iterator>
+	</ol>
+	<div style="background-color: #5cb85c; width: 100%; height=50px;">
+		<br></br>
+	</div>
+</div>
+
+<div>
+	<br></br>
+</div>
+
+<div class="subjectsListBox">
 	<div style="background-color: #5cb85c; width: 100%; height=50px; margin-top: 0px;">
 		<h2><s:text name="label.subjects"/>:</h2>
 	</div>
