@@ -2,6 +2,7 @@ package com.politechnika.services;
 
 import java.util.List;
 
+import com.politechnika.models.Post;
 import com.politechnika.models.Subject;
 import com.politechnika.models.User;
 
@@ -14,4 +15,7 @@ public interface SubjectService {
 	List<Subject> findAllByTeacher(User user);
 	List<Subject> getAllSubjects();
 	List<Subject> getSubjectByStudent(User student);
+	
+	List<Post> getPosts(long subjectId);
+	boolean removePost(Post post, User teacher);
 }

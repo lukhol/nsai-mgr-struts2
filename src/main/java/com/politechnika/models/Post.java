@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -27,12 +28,15 @@ public class Post {
 	
 	@Column(nullable=false, length = 50000)
 	private String textContent;
+	
+	@ManyToOne
+	private Subject subject;
 
-	public Long getId() {
+	public Long getPostId() {
 		return postId;
 	}
 
-	public void setId(Long id) {
+	public void setPostId(Long id) {
 		this.postId = id;
 	}
 

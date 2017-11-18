@@ -39,7 +39,7 @@ public class Subject {
 	@JoinColumn(name="teacherId")
 	private User teacher;
 	
-	@OneToMany
+	@OneToMany(mappedBy="subject")
 	private List<Post> posts;
 
 	public Long getSubjectId() {

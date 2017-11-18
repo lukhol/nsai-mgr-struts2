@@ -1,5 +1,6 @@
 package com.politechnika.services;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.politechnika.dao.SubjectDAO;
+import com.politechnika.models.Post;
 import com.politechnika.models.RoleName;
 import com.politechnika.models.Subject;
 import com.politechnika.models.User;
@@ -62,5 +64,28 @@ public class SubjectServiceImpl implements SubjectService {
 	@Transactional
 	public List<Subject> getSubjectByStudent(User student) {
 		return subjectDAO.getSubjectByStudent(student);
+	}
+
+	@Override
+	@Transactional
+	public List<Post> getPosts(long subjectId) {
+		Subject subject = getSubject(subjectId);
+		List<Post> posts = new ArrayList<>();
+		for(Post post : subject.getPosts()) {
+			posts.add(post);
+		}
+		return posts;
+	}
+
+	@Override
+	@Transactional
+	public boolean removePost(Post post, User teacher) {
+		try {
+			//TO DO: Check if post belong to the teacher subject.
+			subjectDAO.removePost(post.getPostId());
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
 	}
 }

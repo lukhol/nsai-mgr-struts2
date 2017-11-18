@@ -55,4 +55,12 @@
 		<put-attribute name="body" value="/views/studentSubject/subjectDetails.jsp" />
 	</definition>
 	
+	<definition name="StudentSubjectDef" extends="baseLayout">
+		<put-attribute name="body" value="/views/studentSubject/subject.jsp" />
+	</definition>
+	
+	<definition name="TeacherSubjectManageDef" extends="baseLayout">
+		<put-attribute name="body" value="/views/teacherSubject/subject.jsp" />
+	</definition>
+	
 </tiles-definitions>

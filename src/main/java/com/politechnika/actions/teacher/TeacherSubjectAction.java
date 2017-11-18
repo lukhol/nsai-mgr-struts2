@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.opensymphony.xwork2.Action;
 import com.politechnika.actions.UserAwareAction;
 import com.politechnika.interceptor.Role;
+import com.politechnika.models.Post;
 import com.politechnika.models.RoleName;
 import com.politechnika.models.Subject;
 import com.politechnika.models.User;
@@ -22,7 +23,28 @@ public class TeacherSubjectAction extends UserAwareAction {
 	
 	private List<Subject> subjects;
 	private Subject subject;
+	private Post post;
 	private long subjectToEditId;
+	
+	public String subjectManage() throws Exception {
+		subject = subjectService.getSubject(subject.getSubjectId());
+		List<Post> posts = subjectService.getPosts(subject.getSubjectId());
+		subject.setPosts(posts);
+		return "subjectManage";
+	}
+	
+	public String postAdd() throws Exception {
+		subjects = subjectService.findAllByTeacher(this.getUser());
+		return SUCCESS;
+	}
+	
+	public String postDelete() throws Exception {
+		subjectService.removePost(post, getUser());
+		subject = subjectService.getSubject(subjectToEditId);
+		List<Post> posts = subjectService.getPosts(subjectToEditId);
+		subject.setPosts(posts);
+		return "subjectManage";
+	}
 	
 	public String list() throws Exception {
 		subjects = subjectService.findAllByTeacher(this.getUser());
@@ -158,5 +180,13 @@ public class TeacherSubjectAction extends UserAwareAction {
 
 	public void setSubjectToEditId(long subjectToEditId) {
 		this.subjectToEditId = subjectToEditId;
+	}
+
+	public Post getPost() {
+		return post;
+	}
+
+	public void setPost(Post post) {
+		this.post = post;
 	}
 }

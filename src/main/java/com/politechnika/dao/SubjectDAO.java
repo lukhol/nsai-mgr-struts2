@@ -15,4 +15,6 @@ public interface SubjectDAO {
 	List<Subject> findAllByTeacher(User teacher);
 	List<Subject> getAllSubjects();
 	List<Subject> getSubjectByStudent(User student);
+	
+	boolean removePost(long postId);
 }

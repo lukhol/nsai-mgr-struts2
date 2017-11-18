@@ -4,15 +4,42 @@
 <meta http-equiv="Cache-control" content="no-cache">
 <link rel="stylesheet" type="text/css" href="views/css/subject.css">
 
+<script>
+function myFunction(param) {
+    var x = document.getElementById("divId" + param);
+    if (x.style.display === "none") {
+        x.style.display = "inline-block";
+    } else {
+        x.style.display = "none";
+    }
+}
+</script>
+<style>
+.test{
+	width: 200px;
+    text-align: center;
+    background-color: lightblue;
+    display: none;
+}
+</style>
+
 <div class="subjectsListBox">
 	<div style="background-color: #5cb85c; width: 100%; height=50px; margin-top: 0px;">
 		<h2>Twoje przedmioty:</h2>
 	</div>
 	<ol>
-		<s:iterator value="savedStudentSubjects">
+		<s:iterator value="savedStudentSubjects" status="status">
 			<li>
-				<s:property value="name"/>
+				<s:url action="subjectPageStudentSubject" namespace="/" var="SubjectStudentSubjectTag">
+					<s:param name="subject.subjectId"><s:property value="subjectId"/></s:param>
+				</s:url>
+				<div style="width:100px; display: inline-block;">
+					<a href="<s:property value="SubjectStudentSubjectTag" />"><s:property value="name"/></a>
+				</div>
 			</li>
+			<s:div id="divId%{#status.count}" class="test">
+					<s:property value="description"/>
+				</s:div>
 		</s:iterator>
 	</ol>
 	<div style="background-color: #5cb85c; width: 100%; height=50px;">
