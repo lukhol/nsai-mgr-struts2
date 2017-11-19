@@ -46,6 +46,14 @@ public class TeacherSubjectAction extends UserAwareAction {
 		return "subjectManage";
 	}
 	
+	public String postDeleteAjax() throws Exception {
+		subjectService.removePost(post, getUser());
+		subject = subjectService.getSubject(subjectToEditId);
+		List<Post> posts = subjectService.getPosts(subjectToEditId);
+		subject.setPosts(posts);
+		return "deletePostAjax";
+	}
+	
 	public String list() throws Exception {
 		subjects = subjectService.findAllByTeacher(this.getUser());
 		return SUCCESS;
