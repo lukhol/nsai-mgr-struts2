@@ -62,5 +62,13 @@ public class Post {
 
 	public void setTextContent(String textContent) {
 		this.textContent = textContent;
+	}
+
+	public Subject getSubject() {
+		return subject;
+	}
+
+	public void setSubject(Subject subject) {
+		this.subject = subject;
 	} 
 }

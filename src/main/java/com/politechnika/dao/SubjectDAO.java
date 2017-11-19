@@ -2,6 +2,7 @@ package com.politechnika.dao;
 
 import java.util.List;
 
+import com.politechnika.models.Post;
 import com.politechnika.models.Subject;
 import com.politechnika.models.User;
 
@@ -17,4 +18,5 @@ public interface SubjectDAO {
 	List<Subject> getSubjectByStudent(User student);
 	
 	boolean removePost(long postId);
+	void addPost(Post post);
 }

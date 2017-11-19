@@ -82,4 +82,9 @@ public class SubjectDAOImpl implements SubjectDAO {
 			return false;
 		}
 	}
+
+	@Override
+	public void addPost(Post post) {
+		sessionFactory.getCurrentSession().save(post);
+	}
 }

@@ -88,4 +88,10 @@ public class SubjectServiceImpl implements SubjectService {
 			return false;
 		}
 	}
+
+	@Override
+	@Transactional
+	public void addPost(Post post) {
+		subjectDAO.addPost(post);
+	}
 }

@@ -6,7 +6,7 @@
 
 <script>
 
-function test(postId, subjectId, divNo){	
+function deletePost(postId, subjectId, divNo){	
 	var postContentDivId = "postContent" + divNo;
 	var buttonContentId = "buttonContent" + divNo;
 	
@@ -48,7 +48,7 @@ function test(postId, subjectId, divNo){
 					<s:param name="subjectToEditId"><s:property value="subject.subjectId"/></s:param>
 				</s:url>
 				
-				<button id="buttonContent<s:property value="%{#rowStatusNo.index}" />" class="buttonStyle" onClick="test('<s:property value="postId"/>', '<s:property value="subject.subjectId"/>', '<s:property value="%{#rowStatusNo.index}" />');">
+				<button id="buttonContent<s:property value="%{#rowStatusNo.index}" />" class="buttonStyle" onClick="deletePost('<s:property value="postId"/>', '<s:property value="subject.subjectId"/>', '<s:property value="%{#rowStatusNo.index}" />');">
 					<span><s:text name="label.deletePost"/></span>
 				</button>
 			</div>

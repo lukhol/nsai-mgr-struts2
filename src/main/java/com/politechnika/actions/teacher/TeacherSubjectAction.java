@@ -1,5 +1,6 @@
 package com.politechnika.actions.teacher;
 
+import java.util.Calendar;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,8 +35,15 @@ public class TeacherSubjectAction extends UserAwareAction {
 	}
 	
 	public String postAdd() throws Exception {
-		subjects = subjectService.findAllByTeacher(this.getUser());
-		return SUCCESS;
+		subject = subjectService.getSubject(subject.getSubjectId());
+		post.setSubject(subject);
+		post.setCreationDate(Calendar.getInstance().getTime());
+		subjectService.addPost(post);
+		
+		//Clear post for form.
+		post = null;
+		
+		return subjectManage();
 	}
 	
 	public String postDelete() throws Exception {
