@@ -12,12 +12,34 @@ function changeDivVisibility(divId, buttonId){
 	if(div.style.display === "none"){
 		div.style.display = "inline-block";
 		button.innerHTML = '<s:text name="form.hideForm"/>';
-		//button.style.display = "inline-block";
 	} else {
 		div.style.display = "none";
 		button.innerHTML = '<s:text name="form.addPost"/>';
-		//button.style.display = "inlie-block";
 	}
+}
+
+function sendForm(){
+	var formData = $("#other-form").serialize();
+	var addSubjectSection = document.getElementById("addSubjectSection");
+	var addingPostLoader = document.getElementById("addingPostLoader");
+	
+	addingPostLoader.style.display = "inline-block";
+
+	changeDivVisibility('addSubjectSection', 'addPostButton');
+	
+	$.ajax({
+	    type : "POST",
+	    url  : "postAddTeacherSubject",
+	    data: formData,
+	    success : function(a){
+	    	var allPostsDiv = document.getElementById("all-posts"); 
+	    	allPostsDiv.innerHTML = a;
+	    	addingPostLoader.style.display = "none";
+	    },
+	    error : function(xhr, errmsg) {
+	    	alert(errmsg);
+	    }
+	}); 
 }
 </script>
 
@@ -28,22 +50,31 @@ function changeDivVisibility(divId, buttonId){
 	margin: 10px;
 	margin-right: 20px;
 }
+#addingPostLoader{
+	display: none;
+}
 </style>
 
 <div>
 	<div>
 		<button id="addPostButton" onClick="changeDivVisibility('addSubjectSection', 'addPostButton');">Add post</button>
 	</div>
+	<div id="addingPostLoader">
+		<div>
+			Adding post..
+		</div>
+		<div class="loader">
+		</div>
+	</div>
 	<div id="addSubjectSection">
 		<h3><s:text name="label.addPost"/></h3>
-		<s:form action="postAddTeacherSubject" namespace="/">
+		<s:form action="postAddTeacherSubject" namespace="/" id="other-form">
 		
 			<s:textfield class="subjectName" name="post.title" placeholder="%{getText('post.name')}"/>
 			<s:textarea class="subjectDescription" name="post.textContent" placeholder="%{getText('post.content')}"/>
 			
 			<s:hidden name="subject.subjectId" />
-			
-			<s:submit key="label.add" />
 		</s:form>
+		<button onClick ="sendForm();"><s:text name="form.add"/></button>
 	</div>
 </div>

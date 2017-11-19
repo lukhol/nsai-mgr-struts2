@@ -43,7 +43,10 @@ public class TeacherSubjectAction extends UserAwareAction {
 		//Clear post for form.
 		post = null;
 		
-		return subjectManage();
+		subject = subjectService.getSubject(subject.getSubjectId());
+		List<Post> posts = subjectService.getPosts(subject.getSubjectId());
+		subject.setPosts(posts);
+		return "deletePostAjax";
 	}
 	
 	public String postDelete() throws Exception {
