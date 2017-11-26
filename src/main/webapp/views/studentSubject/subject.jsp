@@ -15,7 +15,7 @@
 			<h2><s:property value="title"/>:</h2>
 		</div>
 		<div style="padding-bottom: 15px;">
-			<s:property value="textContent"/>
+			<pre><s:property value="textContent"/></pre>
 		</div>
 	</div>
 	<div>
