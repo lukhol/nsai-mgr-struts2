@@ -39,7 +39,7 @@ function deletePost(postId, subjectId, divNo){
 			</div>
 			
 			<div style="padding-bottom: 15px;" id="postContent<s:property value="%{#rowStatusNo.index}" />" >
-				<s:property value="textContent"/>
+				<pre><s:property value="textContent"/></pre>
 			</div>
 			
 			<div>
