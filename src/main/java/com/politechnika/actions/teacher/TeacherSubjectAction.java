@@ -34,6 +34,13 @@ public class TeacherSubjectAction extends UserAwareAction {
 		return "subjectManage";
 	}
 	
+	public String studentsList() throws Exception {
+		subject = subjectService.getSubject(subject.getSubjectId());
+		List<User> students = subjectService.getStudents(subject.getSubjectId());
+		subject.setStudents(students);
+		return "studentsList";
+	}
+	
 	public String postAdd() throws Exception {
 		subject = subjectService.getSubject(subject.getSubjectId());
 		post.setSubject(subject);

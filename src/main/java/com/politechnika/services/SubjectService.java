@@ -19,4 +19,5 @@ public interface SubjectService {
 	List<Post> getPosts(long subjectId);
 	boolean removePost(Post post, User teacher);
 	void addPost(Post post);
+	List<User> getStudents(Long subjectId);
 }

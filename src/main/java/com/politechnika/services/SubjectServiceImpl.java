@@ -94,4 +94,15 @@ public class SubjectServiceImpl implements SubjectService {
 	public void addPost(Post post) {
 		subjectDAO.addPost(post);
 	}
+
+	@Override
+	@Transactional
+	public List<User> getStudents(Long subjectId) {
+		Subject subject = getSubject(subjectId);
+		List<User> students = new ArrayList<>();
+		for(User student : subject.getStudents()) {
+			students.add(student);
+		}
+		return students;
+	}
 }
