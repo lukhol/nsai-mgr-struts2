@@ -30,6 +30,53 @@ subject@charset "UTF-8";
 	box-shadow: 10px 10px 5px #888888;
 	padding-top: 0px;
 	padding-bottom: 0px;
+	border:1px solid #aaa;
+}
+
+.subjectsListBox2 {
+	width: auto;
+	display: inline-block;
+	background-color: white;
+	box-shadow: 10px 10px 5px #888888;
+	padding-top: 0px;
+	padding-bottom: 0px;
+	border:1px solid #aaa;
+}
+
+.studentNames {
+	padding-left: 150px;
+}
+
+ .studentEmails {
+ 	padding-right: 150px;
+ }
+
+.listItem {
+	text-align: left;
+	margin: 3px;
+}
+
+.subjectButtons {
+	margin-left: 30px;
+	margin-bottom: 5px;
+	float: right;
+	display: inline-block;
+}
+
+.subjectNameItem {
+	padding-left: 150px;
+}
+
+.subjectBtn {
+	color: #FFFFFF;
+	background-color: #2673ef;
+	padding: 3px;
+	margin: 1px;
+	text-decoration:none;
+}
+
+.subjectBtn:hover {
+	background-color: #3f00ff;
 }
 
 .buttonStyle {

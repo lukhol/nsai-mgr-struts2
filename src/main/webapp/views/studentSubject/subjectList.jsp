@@ -33,7 +33,7 @@ function myFunction(param) {
 				<s:url action="subjectPageStudentSubject" namespace="/" var="SubjectStudentSubjectTag">
 					<s:param name="subject.subjectId"><s:property value="subjectId"/></s:param>
 				</s:url>
-				<div style="width:100px; display: inline-block;">
+				<div style="text-align: left; width:400px; display: inline-block;">
 					<a href="<s:property value="SubjectStudentSubjectTag" />"><s:property value="name"/></a>
 				</div>
 			</li>
@@ -61,8 +61,10 @@ function myFunction(param) {
 				<s:url action="subjectDetailsStudentSubject" namespace="/" var="SubjectDetailsTag">
 					<s:param name="subject.subjectId"><s:property value="subjectId"/></s:param>
 				</s:url>
-				<a href="<s:property value="#SubjectDetailsTag" />"><s:property value="name"/></a>
-				(<s:property value="teacher.firstname"/> <s:property value="teacher.lastname" />)
+				<div style="text-align: left; width:400px; display: inline-block;">
+					<a href="<s:property value="#SubjectDetailsTag" />"><s:property value="name"/></a>
+					(<s:property value="teacher.firstname"/> <s:property value="teacher.lastname" />)
+				</div>
 			</li>
 		</s:iterator>
 	</ol>

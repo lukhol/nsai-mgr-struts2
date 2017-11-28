@@ -10,9 +10,9 @@
 	<div style="background-color: #5cb85c; width: 100%; height=50px; margin-top: 0px;">
 		<h2>Welcome <s:property value="user.firstname"/>. Your subjects:</h2> 
 	</div>
-	<ol>
+	<table id="orderedList">
 		<s:iterator value="subjects" status="ctr">
-			<li>
+			<tr class="listItem">
 				<s:url action="inputTeacherSubject" namespace="/" var="InputTeacherSubjectTag">
 					<s:param name="subject.subjectId"><s:property value="subjectId"/></s:param>
 				</s:url>
@@ -29,14 +29,16 @@
 					<s:param name="subject.subjectId"><s:property value="subjectId"/></s:param>
 				</s:url>
 				
-				<s:property value="name"/>
-				<a href="<s:property value="#InputTeacherSubjectTag" />">[<s:text name="form.edit"/>]</a> 
-				<a href="<s:property value="#DeleteTeacherSubjectTag" />">[<s:text name="form.delete" />]</a>
-				<a href="<s:property value="#ManageTeacherSubjectTag" />">[<s:text name="form.manage" />]</a>
-				<a href="<s:property value="#studentsTeacherSubjectTag" />">[<s:text name="form.studentsList" />]</a>
-			</li>
+				<td class="subjectNameItem"><s:property value="%{#ctr.index + 1}"/>. <s:property value="name"/></td>
+				<td class="subjectButtons">
+					<a class="subjectBtn" href="<s:property value="#InputTeacherSubjectTag" />"><s:text name="form.edit"/></a> 
+					<a class="subjectBtn" href="<s:property value="#DeleteTeacherSubjectTag" />"><s:text name="form.delete" /></a>
+					<a class="subjectBtn" href="<s:property value="#ManageTeacherSubjectTag" />"><s:text name="form.manage" /></a>
+					<a class="subjectBtn" href="<s:property value="#studentsTeacherSubjectTag" />"><s:text name="form.studentsList" /></a>
+				</td>
+			</tr>
 		</s:iterator>
-	</ol>
+	</table>
 	<div style="background-color: #5cb85c; width: 100%; height=50px;">
 		<button id="myBtn" class="buttonStyle"><s:text name="form.add"/></button>
 	</div>
