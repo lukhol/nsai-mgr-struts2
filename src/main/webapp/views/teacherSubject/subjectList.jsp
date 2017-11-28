@@ -25,10 +25,15 @@
 					<s:param name="subject.subjectId"><s:property value="subjectId"/></s:param>
 				</s:url>
 				
+				<s:url action="studentsListTeacherSubject" namespace="/" var="studentsTeacherSubjectTag">
+					<s:param name="subject.subjectId"><s:property value="subjectId"/></s:param>
+				</s:url>
+				
 				<s:property value="name"/>
 				<a href="<s:property value="#InputTeacherSubjectTag" />">[<s:text name="form.edit"/>]</a> 
 				<a href="<s:property value="#DeleteTeacherSubjectTag" />">[<s:text name="form.delete" />]</a>
 				<a href="<s:property value="#ManageTeacherSubjectTag" />">[<s:text name="form.manage" />]</a>
+				<a href="<s:property value="#studentsTeacherSubjectTag" />">[<s:text name="form.studentsList" />]</a>
 			</li>
 		</s:iterator>
 	</ol>

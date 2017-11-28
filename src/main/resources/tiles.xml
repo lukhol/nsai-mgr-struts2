@@ -63,4 +63,8 @@
 		<put-attribute name="body" value="/views/teacherSubject/subject.jsp" />
 	</definition>
 	
+	<definition name="TeacherSubjectStudentsListDef" extends="baseLayout">
+		<put-attribute name="body" value="/views/teacherSubject/studentsList.jsp" />
+	</definition>
+	
 </tiles-definitions>
