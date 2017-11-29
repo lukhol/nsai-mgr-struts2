@@ -28,7 +28,32 @@ public class TeacherSubjectAction extends UserAwareAction {
 	private Post post;
 	private long subjectToEditId;
 	
+	private boolean isSubjectAllowed() {
+		if(subject != null) {
+			Subject findSubject = subjectService.getSubject(subject.getSubjectId());
+			if(findSubject != null) {
+				User teacher = findSubject.getTeacher();
+				if(getUser().getUserId().equals(teacher.getUserId())) {
+					return true;
+				}
+			}
+		} 
+		if(subjectToEditId != 0) {
+			Subject findSubject = subjectService.getSubject(subjectToEditId);
+			if(findSubject != null) {
+				User teacher = findSubject.getTeacher();
+				if(getUser().getUserId().equals(teacher.getUserId())) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+	
 	public String subjectManage() throws Exception {
+		if(!isSubjectAllowed()) {
+			return LOGIN;
+		}
 		subject = subjectService.getSubject(subject.getSubjectId());
 		List<Post> posts = subjectService.getPosts(subject.getSubjectId());
 		Collections.reverse(posts);
@@ -37,13 +62,20 @@ public class TeacherSubjectAction extends UserAwareAction {
 	}
 	
 	public String studentsList() throws Exception {
-		subject = subjectService.getSubject(subject.getSubjectId());
-		List<User> students = subjectService.getStudents(subject.getSubjectId());
-		subject.setStudents(students);
-		return "studentsList";
+		if(isSubjectAllowed()) {
+			subject = subjectService.getSubject(subject.getSubjectId());
+			List<User> students = subjectService.getStudents(subject.getSubjectId());
+			subject.setStudents(students);
+			return "studentsList";
+		} else {
+			return LOGIN;
+		}
 	}
 	
 	public String postAdd() throws Exception {
+		if(!isSubjectAllowed()) {
+			return LOGIN;
+		}
 		subject = subjectService.getSubject(subject.getSubjectId());
 		post.setSubject(subject);
 		post.setCreationDate(Calendar.getInstance().getTime());
@@ -60,6 +92,9 @@ public class TeacherSubjectAction extends UserAwareAction {
 	}
 	
 	public String postDelete() throws Exception {
+		if(!isSubjectAllowed()) {
+			return LOGIN;
+		}
 		subjectService.removePost(post, getUser());
 		subject = subjectService.getSubject(subjectToEditId);
 		List<Post> posts = subjectService.getPosts(subjectToEditId);
@@ -68,6 +103,9 @@ public class TeacherSubjectAction extends UserAwareAction {
 	}
 	
 	public String postDeleteAjax() throws Exception {
+		if(!isSubjectAllowed()) {
+			return LOGIN;
+		}
 		subjectService.removePost(post, getUser());
 		subject = subjectService.getSubject(subjectToEditId);
 		List<Post> posts = subjectService.getPosts(subjectToEditId);
@@ -99,6 +137,9 @@ public class TeacherSubjectAction extends UserAwareAction {
 	}
 	
 	public String delete() throws Exception {
+		if(!isSubjectAllowed()) {
+			return LOGIN;
+		}
 		if(subject.getSubjectId() != 0) {
 			subjects = subjectService.findAllByTeacher(this.getUser());
 			subject = subjects
@@ -139,6 +180,9 @@ public class TeacherSubjectAction extends UserAwareAction {
 	}
 	
 	public String edit() throws Exception{
+		if(!isSubjectAllowed()) {
+			return LOGIN;
+		}
 		if(!validateSubject())
 			return INPUT;
 		
