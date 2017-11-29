@@ -24,6 +24,12 @@
         <property name="url" value="jdbc:mysql://85.255.10.140:3306/nsai" />
         <property name="username" value="nsaiuser" />
         <property name="password" value="nsaipassword" />
+		<property name="connectionProperties">
+			<props>
+				<prop key="useUnicode">yes</prop>
+				<prop key="characterEncoding">utf8</prop>
+			</props>
+		</property>
     </bean>
 
     <!--Hibernate session factory configuration -->
