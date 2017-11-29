@@ -30,6 +30,7 @@ function sendForm(){
 	$.ajax({
 	    type : "POST",
 	    url  : "postAddTeacherSubject",
+	    contentType: "application/x-www-form-urlencoded;charset=utf-8",
 	    data: formData,
 	    success : function(a){
 	    	var allPostsDiv = document.getElementById("all-posts"); 

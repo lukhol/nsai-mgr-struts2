@@ -1,6 +1,7 @@
 package com.politechnika.actions.teacher;
 
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +31,7 @@ public class TeacherSubjectAction extends UserAwareAction {
 	public String subjectManage() throws Exception {
 		subject = subjectService.getSubject(subject.getSubjectId());
 		List<Post> posts = subjectService.getPosts(subject.getSubjectId());
+		Collections.reverse(posts);
 		subject.setPosts(posts);
 		return "subjectManage";
 	}
@@ -52,6 +54,7 @@ public class TeacherSubjectAction extends UserAwareAction {
 		
 		subject = subjectService.getSubject(subject.getSubjectId());
 		List<Post> posts = subjectService.getPosts(subject.getSubjectId());
+		Collections.reverse(posts);
 		subject.setPosts(posts);
 		return "deletePostAjax";
 	}
