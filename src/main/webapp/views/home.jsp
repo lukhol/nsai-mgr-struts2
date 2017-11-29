@@ -1,8 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 
+<style>
+.errorMessage{
+	color: white;
+}
+</style>
+
 <div>
-	<h4><s:actionmessage/></h4>
+	<h4><s:fielderror fieldName="registrationSuccess"/></h4>
 	<h1><s:text name="label.home" /></h1>
 	
 	<s:url action="inputLogin" namespace="/" var="loginTag"/>

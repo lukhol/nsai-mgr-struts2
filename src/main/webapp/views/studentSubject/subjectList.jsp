@@ -28,6 +28,10 @@ function myFunction(param) {
 		<h2>Twoje przedmioty:</h2>
 	</div>
 	<ol>
+		<s:if test="savedStudentSubjects.size == 0">
+			Brak przedmiotow.
+		</s:if>
+	
 		<s:iterator value="savedStudentSubjects" status="status">
 			<li>
 				<s:url action="subjectPageStudentSubject" namespace="/" var="SubjectStudentSubjectTag">
@@ -55,6 +59,11 @@ function myFunction(param) {
 	<div style="background-color: #5cb85c; width: 100%; height=50px; margin-top: 0px;">
 		<h2><s:text name="label.subjects"/>:</h2>
 	</div>
+	
+	<s:if test="allSubjects.size == 0">
+			Brak przedmiotow.
+		</s:if>
+	
 	<ol>
 		<s:iterator value="allSubjects">
 			<li>

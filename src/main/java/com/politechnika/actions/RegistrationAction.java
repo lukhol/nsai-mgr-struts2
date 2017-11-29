@@ -45,7 +45,8 @@ public class RegistrationAction extends ActionSupport implements ServletRequestA
 		}
 		
 		studentService.addStudent(user);
-		addActionMessage(getText("registration.success") + " " + user.getEmail());
+		//addActionMessage(getText("registration.success") + " " + user.getEmail());
+		addFieldError("registrationSuccess", getText("registration.success"));// + " " + user.getEmail());
 		return SUCCESS;
 	}
 	
