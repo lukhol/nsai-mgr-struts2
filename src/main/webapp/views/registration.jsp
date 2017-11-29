@@ -8,6 +8,8 @@
 		<s:textfield placeholder="%{getText('user.username')}" name="user.username" class="inputItemTwo"/>
 		<s:password placeholder="%{getText('user.password')}" name="user.password" class="inputItemTwo"/>
 		<s:textfield placeholder="%{getText('user.email')}" name="user.email" type="email" class="inputItemTwo"/>
+		<s:textfield placeholder="%{getText('user.firstname')}" name="user.firstname" class="inputItemTwo"/>
+		<s:textfield placeholder="%{getText('user.lastname')}" name="user.lastname" class="inputItemTwo"/>
 	    <div class="g-recaptcha" data-sitekey="6LedvzcUAAAAAAmGg7uoftMqfP4M50UCNTg9ndTG"></div>
 	    <s:submit key="form.submit"/>
 	</s:form>
